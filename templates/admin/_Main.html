@@ -69,8 +69,6 @@
               <ul class="messages">
                 {% for message in messages %}
                   <li class="alert {% if message.tags %}
-                      
-                      
                       alert-{{ message.tags }}
                     {% endif %}"
                     role="alert">{{ message }}</li>
