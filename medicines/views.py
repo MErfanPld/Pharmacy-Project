@@ -71,14 +71,21 @@ class DrugListView(PermissionMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        low_stock_threshold = 10
-        low_stock_drugs = Drug.objects.filter(
-            quantity__lte=low_stock_threshold)
+
+        # هشدارهای موجودی کم
+        low_stock_drugs = Drug.objects.filter(quantity__range=(1, 10))
         for drug in low_stock_drugs:
             message = f'تعداد {drug.name} کمتر از {drug.quantity} هست.'
             messages.warning(self.request, message)
-        return context
 
+        # هشدارهای موجودی صفر
+        end_stock_threshold = 0
+        end_stock_drugs = Drug.objects.filter(quantity__lte=end_stock_threshold)
+        for drug in end_stock_drugs:
+            message = f'محصول {drug.name} به اتمام رسیده هست.'
+            messages.error(self.request, message)
+
+        return context
 
 class DrugCreateView(PermissionMixin, CreateView):
     permissions = ['medicines_create']
