@@ -18,8 +18,29 @@
             <a href="{% url 'users-list' %}">لیست کاربران</a>
           </li>
           <li>
-            <a href="{% url 'users-create' %}">ساخت کاربر جدید</a>
+            <a href="{% url 'users-create' %}">افزودن کاربر جدید</a>
           </li>
+        </ul>
+      </li>
+
+      <li>
+        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-list-alt"></i><span class="nav-text">مدیریت دسته بندی </span></a><ul aria-expanded="false" class="mm-collapse mm-show">
+          <li>
+            <a href="{% url 'category-drug-list' %}">لیست دسته بندی </a>
+          </li>
+          <li>
+            <a href="{% url 'category-drug-create' %}">افزودن دسته بندی جدید</a>
+          </li>
+        </ul>
+      </li>
+
+      <li>
+        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-stethoscope"></i><span class="nav-text">مدیریت دارو ها</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
+          <li>
+            <a href="{% url 'drug-list' %}">لیست دارو ها</a>
+          </li>
+          <li>
+            <a href="{% url 'drug-create' %}">افزودن دارو جدید</a>
         </ul>
       </li>
 
@@ -29,25 +50,12 @@
             <a href="{% url 'insurance-list' %}">لیست بیمه ها</a>
           </li>
           <li>
-            <a href="{% url 'insurance-create' %}">ساخت بیمه جدید</a>
+            <a href="{% url 'insurance-create' %}">افزودن بیمه جدید</a>
           </li>
         </ul>
       </li>
 
-      <li>
-        <a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false"><i class="flaticon-050-info"></i><span class="nav-text">برنامه ها</span></a><ul aria-expanded="false" class="mm-collapse" style="">
-          <li>
-            <a href="./app-profile.html">مشخصات</a>
-          </li>
-          <li>
-            <a href="./post-details.html">جزئیات ارسال</a>
-          </li>
-          </li>
-          <li>
-            <a href="./app-calender.html">تقویم</a>
-          </li>
-        </ul>
-      </li>
+
     </ul>
     <div class="copyright">
       <p>

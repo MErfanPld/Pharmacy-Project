@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p64rnm$689!3n=tq$oqy9a1fe$mmkt^1xg^@b@kc42$p*_0=23
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,12 +41,17 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'crispy_bootstrap5',
-
+    'bootstrap_datepicker_plus',
+    'django_bootstrap5',
+    
     'users',
     'acl',
     'accounts',
     'dashboard',
     'insurances',
+    'medicines',
+    
+    'extenstions',
 ]
 
 MIDDLEWARE = [

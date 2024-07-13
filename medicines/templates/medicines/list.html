@@ -1,0 +1,46 @@
+{% extends 'admin/_Main.html' %}
+{% block content %}
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">لیست دارو ها</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">شناسه</th>
+                <th scope="col">نام دارو</th>
+                <th scope="col">دسته بندی</th>
+                <th scope="col">قیمت</th>
+                <th scope="col">تعداد</th>
+                <th scope="col">شرکت تولید</th>
+                <th scope="col">تاریخ انقضا</th>
+                <th scope="col">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in object_list %}
+                <tr>
+                  <th scope="row">{{ item.id }}</th>
+                  <td>{{ item.name|default:'---' }}</td>
+                  <td>{{ item.category|default:'---' }}</td>
+                  <td>{{ item.price|default:'---' }}</td>
+                  <td>{{ item.quantity|default:'---' }}</td>
+                  <td>{{ item.manufacturer|default:'---' }}</td>
+                  <td>{{ item.jexpiration_date|default:'---' }}</td>
+                  <td>
+                    <div class="d-flex">
+                      <a href="{% url 'drug-update' item.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="{% url 'drug-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

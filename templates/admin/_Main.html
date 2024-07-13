@@ -70,6 +70,7 @@
                 {% for message in messages %}
                   <li class="alert {% if message.tags %}
                       
+                      
                       alert-{{ message.tags }}
                     {% endif %}"
                     role="alert">{{ message }}</li>
@@ -85,6 +86,8 @@
 
       {% include '../inc/Footer.html' %}
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <script src="{% static 'js/angular.min.js' %}"></script>
     <script src="{% static 'vendor/global/global.min.js' %}"></script>
     <script src="{% static 'vendor/chart.js/Chart.bundle.min.js' %}"></script>
@@ -96,16 +99,14 @@
     <script src="{% static 'js/deznav-init.js' %}"></script>
 
     <script>
-      var app = angular.module("myApp", []);
+      var app = angular.module('myApp', [])
       app.config(function ($interpolateProvider, $httpProvider) {
-          $interpolateProvider.startSymbol('[[');
-          $interpolateProvider.endSymbol(']]');
-  
-          $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-          $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-      });
-  
-  </script>
-
+        $interpolateProvider.startSymbol('[[')
+        $interpolateProvider.endSymbol(']]')
+      
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken'
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
+      })
+    </script>
   </body>
 </html>
