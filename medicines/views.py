@@ -3,8 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DeleteView, UpdateView, CreateView
 from acl.mixins import PermissionMixin
 from .filters import DrugFilters
-from .models import Drug,CategoryDrug
-from .forms import CategoryDrugForm,DrugForm
+from .models import Drug, CategoryDrug
+from .forms import CategoryDrugForm, DrugForm
 
 
 # Create your views here.
@@ -57,6 +57,7 @@ class CategoryDrugDeleteView(PermissionMixin, DeleteView):
 
 # ==================== DRUG ====================
 
+
 class DrugListView(PermissionMixin, ListView):
     permissions = ['medicines_list']
     model = Drug
@@ -64,13 +65,19 @@ class DrugListView(PermissionMixin, ListView):
     ordering = ['-created_at']
     template_name = 'medicines/list.html'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data()
-        return context
-
     def get_queryset(self):
         queryset = super().get_queryset()
         return DrugFilters(data=self.request.GET, queryset=queryset).qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        low_stock_threshold = 10
+        low_stock_drugs = Drug.objects.filter(
+            quantity__lte=low_stock_threshold)
+        for drug in low_stock_drugs:
+            message = f'تعداد {drug.name} کمتر از {drug.quantity} هست.'
+            messages.warning(self.request, message)
+        return context
 
 
 class DrugCreateView(PermissionMixin, CreateView):
@@ -79,6 +86,7 @@ class DrugCreateView(PermissionMixin, CreateView):
     model = Drug
     form_class = DrugForm
     success_url = reverse_lazy("drug-list")
+
 
 class DrugUpdateView(PermissionMixin, UpdateView):
     permissions = ['medicines_edit']

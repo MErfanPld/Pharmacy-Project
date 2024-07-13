@@ -6,6 +6,9 @@
         <h4 class="card-title">لیست دارو ها</h4>
       </div>
       <div class="card-body">
+
+        
+        <!-- جدول لیست داروها -->
         <div class="table-responsive">
           <table class="table table-hover table-responsive-sm">
             <thead>
@@ -21,15 +24,15 @@
               </tr>
             </thead>
             <tbody>
-              {% for item in object_list %}
+              {% for item in drugs %}
                 <tr>
                   <th scope="row">{{ item.id }}</th>
-                  <td>{{ item.name|default:'---' }}</td>
-                  <td>{{ item.category|default:'---' }}</td>
-                  <td>{{ item.price|default:'---' }}</td>
-                  <td>{{ item.quantity|default:'---' }}</td>
-                  <td>{{ item.manufacturer|default:'---' }}</td>
-                  <td>{{ item.jexpiration_date|default:'---' }}</td>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.price }}</td>
+                  <td>{{ item.quantity }}</td>
+                  <td>{{ item.manufacturer }}</td>
+                  <td>{{ item.expiration_date }}</td>
                   <td>
                     <div class="d-flex">
                       <a href="{% url 'drug-update' item.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="{% url 'drug-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>

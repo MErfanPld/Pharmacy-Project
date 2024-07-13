@@ -41,6 +41,7 @@ class Drug(models.Model):
     price = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name="قیمت")
     quantity = models.IntegerField(verbose_name="تعداد")
+    threshold = models.IntegerField(default=10)
     manufacturer = models.CharField(max_length=255, verbose_name="تولید کننده")
     expiration_date = models.DateField(verbose_name="تاریخ انقضا")
     status = models.BooleanField(default=False, verbose_name="وضعیت")

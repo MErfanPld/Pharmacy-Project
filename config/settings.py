@@ -43,14 +43,15 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'bootstrap_datepicker_plus',
     'django_bootstrap5',
-    
+    'django_celery_beat',
+
     'users',
     'acl',
     'accounts',
     'dashboard',
     'insurances',
     'medicines',
-    
+
     'extenstions',
 ]
 
@@ -148,3 +149,12 @@ AUTH_USER_MODEL = 'users.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 LOGIN_URL = '/login'
+
+
+# Celery
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
