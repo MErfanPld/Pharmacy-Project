@@ -1,0 +1,42 @@
+{% extends 'admin/_Main.html' %}
+{% block content %}
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title">لیست بیمه ها</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">شناسه</th>
+                <th scope="col">نام بیمه</th>
+                <th scope="col">درصد تخفیف</th>
+                <th scope="col">تاریخ</th>
+                <th scope="col">وضعیت</th>
+                <th scope="col">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in object_list %}
+                <tr>
+                  <th scope="row">{{ item.id }}</th>
+                  <td>{{ item.name|default:'---' }}</td>
+                  <td>{{ item.price|default:'---' }}</td>
+                  <td>{{ item.get_status|default:'---' }}</td>
+                  <td>{{ item.jcreated|default:'---' }}</td>
+                  <td>
+                    <div class="d-flex">
+                      <a href="{% url 'insurance-update' item.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="{% url 'insurance-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

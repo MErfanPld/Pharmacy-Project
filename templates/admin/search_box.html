@@ -1,0 +1,20 @@
+                    <div class="dashboard_fl_2">
+                        <ul class="mb0">
+                            <li class="list-inline-item">
+
+                            </li>
+                            <li class="list-inline-item">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input type="text" placeholder="جستجو..." id="search_text"
+                                           name="search" value="{{ request.GET.search }}" onkeydown="$('#search_text').keypress(function (e) {
+                            if (e.which == 13) {
+                                $('#search').submit();
+                                return false;    //<---- Add this line
+                            }
+                        })"
+                                           class="form-control">
+                                    <button class="btn my-2 my-sm-0" type="submit"><i class="ti-search"></i></button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>

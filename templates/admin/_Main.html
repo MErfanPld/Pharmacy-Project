@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Boltz : Crypto Admin Template" />
+    <meta property="og:title" content="Boltz : Crypto Admin Template" />
+    <meta property="og:description" content="Boltz : Crypto Admin Template" />
+    <meta property="og:image" content="https://boltz.dexignzone.com/xhtml/social-image.png" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>
+      {% block title %}
+        مدیریت داروخانه
+      {% endblock %}
+    </title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <link href="{% static 'vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet" />
+    <link href="{% static 'vendor/jquery-nice-select/css/nice-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+    <div id="preloader">
+      <div class="loader">
+        <span>مدیریت</span><span>داروخانه</span>
+      </div>
+    </div>
+    <div id="main-wrapper">
+      {% include '../inc/Navbar.html' %}
+      {% include '../inc/Sidebar.html' %}
+
+      <div class="content-body">
+        <div class="container-fluid">
+          {% block messages %}
+            <style>
+              .alert {
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+              }
+              
+              .alert-success {
+                background-color: #d4edda;
+                color: #155724;
+              }
+              
+              .alert-error {
+                background-color: #f8d7da;
+                color: #721c24;
+              }
+              
+              .alert-warning {
+                background-color: #fff3cd;
+                color: #856404;
+              }
+              
+              .alert-info {
+                background-color: #d1ecf1;
+                color: #0c5460;
+              }
+            </style>
+
+            {% if messages %}
+              <ul class="messages">
+                {% for message in messages %}
+                  <li class="alert {% if message.tags %}
+                      
+                      alert-{{ message.tags }}
+                    {% endif %}"
+                    role="alert">{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% endblock %}
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+
+      {% include '../inc/Footer.html' %}
+    </div>
+    <script src="{% static 'js/angular.min.js' %}"></script>
+    <script src="{% static 'vendor/global/global.min.js' %}"></script>
+    <script src="{% static 'vendor/chart.js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendor/apexchart/apexchart.js' %}"></script>
+    <script src="{% static 'vendor/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/dashboard/dashboard-1.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/deznav-init.js' %}"></script>
+
+    <script>
+      var app = angular.module("myApp", []);
+      app.config(function ($interpolateProvider, $httpProvider) {
+          $interpolateProvider.startSymbol('[[');
+          $interpolateProvider.endSymbol(']]');
+  
+          $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+          $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+      });
+  
+  </script>
+
+  </body>
+</html>

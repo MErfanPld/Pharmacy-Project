@@ -1,0 +1,42 @@
+{% extends 'auth/_Auth.html' %} {% load crispy_forms_filters %} {% load crispy_forms_tags %} {% load static %} {% block title %}
+  ثبت نام
+{% endblock %}
+{% block content %}
+  <div class="auth-form">
+    <div class="text-center mb-3"></div>
+    <h4 class="text-center mb-4">ثبت نام حساب کاربری</h4>
+    <form method="post">
+      {% if messages %}
+        {% for item in messages %}
+          <p class="text-center text-success justify-content-center">{{ item }}</p>
+        {% endfor %}
+      {% endif %} {% if form.non_field_errors %}
+        {% for item in form.non_field_errors %}
+          <p class="text-center text-danger justify-content-center">{{ item|safe }}</p>
+        {% endfor %}
+      {% endif %} {% csrf_token %} {% for field in form %}
+        <div class="mb-3">
+          <div class="col-md-10">
+            {{ field|as_crispy_field }} {% if field.help_text %}
+              <p>
+                <small style="font-size: 14px">{{ field.help_text|safe }}</small>
+              </p>
+            {% endif %} {% if field.errors %}
+              <p>
+                <small class="text-danger" style="font-size: 14px" style="color: red">{{ field.errors.0|safe }}</small>
+              </p>
+            {% endif %} {% if field.non_field_errors %}
+              <p>
+                <small class="text-danger" style="font-size: 20px" style="color: red">{{ field.non_field_errors.0|safe }}</small>
+              </p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-primary btn-block">ثبت نام</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}
