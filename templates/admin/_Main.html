@@ -36,6 +36,7 @@
 
       <div class="content-body">
         <div class="container-fluid">
+
           {% block messages %}
             <style>
               .alert {
@@ -65,7 +66,7 @@
               }
             </style>
 
-            {% if messages %}
+            {% comment %} {% if messages %}
               <ul class="messages">
                 {% for message in messages %}
                   <li class="alert {% if message.tags %}
@@ -73,9 +74,11 @@
                     {% endif %}"
                     role="alert">{{ message }}</li>
                 {% endfor %}
-              </ul>
-            {% endif %}
+              </ul> {% endcomment %}
+            {% comment %} {% endif %} {% endcomment %}
+
           {% endblock %}
+
           {% block content %}
 
           {% endblock %}

@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DeleteView, UpdateView, CreateView
@@ -83,6 +84,14 @@ class DrugListView(PermissionMixin, ListView):
         end_stock_drugs = Drug.objects.filter(quantity__lte=end_stock_threshold)
         for drug in end_stock_drugs:
             message = f'محصول {drug.name} به اتمام رسیده هست.'
+            messages.error(self.request, message)
+
+        # هشدارهای تاریخ انقضا نزدیک
+        today = datetime.today().date()
+        expiry_threshold = today + timedelta(days=1)
+        near_expiry_drugs = Drug.objects.filter(expiration_date__lte=expiry_threshold)
+        for drug in near_expiry_drugs:
+            message = f'تاریخ انقضای {drug.name} نزدیک است ({drug.expiration_date}).'
             messages.error(self.request, message)
 
         return context
