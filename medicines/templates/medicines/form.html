@@ -1,5 +1,7 @@
 {% extends 'admin/_Main.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
+{% load jalali_tags %}
 
 {% block title %}
   {% if object %}
@@ -9,7 +11,10 @@
   {% endif %}
 {% endblock %}
 
+
+
 {% block content %}
+
 <div class="row">
   <div class="col-xl-12 col-xxl-12">
     <div class="card">
@@ -56,8 +61,5 @@
   </div>
 </div>
 
-{% block extra_head %}
-  <!-- Include form.media to load necessary assets -->
-  {{ form.media }}
-{% endblock %}
+
 {% endblock %}

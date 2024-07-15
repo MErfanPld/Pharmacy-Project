@@ -36,7 +36,6 @@
 
       <div class="content-body">
         <div class="container-fluid">
-
           {% block messages %}
             <style>
               .alert {
@@ -70,13 +69,14 @@
               <ul class="messages">
                 {% for message in messages %}
                   <li class="alert {% if message.tags %}
+                      
                       alert-{{ message.tags }}
                     {% endif %}"
                     role="alert">{{ message }}</li>
                 {% endfor %}
               </ul> {% endcomment %}
-            {% comment %} {% endif %} {% endcomment %}
-
+              {% comment %}
+            {% endif %} {% endcomment %}
           {% endblock %}
 
           {% block content %}
@@ -88,6 +88,10 @@
       {% include '../inc/Footer.html' %}
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Loading static files directly -->
+    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}" />
+    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
 
     <script src="{% static 'js/angular.min.js' %}"></script>
     <script src="{% static 'vendor/global/global.min.js' %}"></script>

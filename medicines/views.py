@@ -91,7 +91,7 @@ class DrugListView(PermissionMixin, ListView):
         expiry_threshold = today + timedelta(days=1)
         near_expiry_drugs = Drug.objects.filter(expiration_date__lte=expiry_threshold)
         for drug in near_expiry_drugs:
-            message = f'تاریخ انقضای {drug.name} نزدیک است ({drug.expiration_date}).'
+            message = f'تاریخ انقضای {drug.name} نزدیک است ({drug.jexpiration_date()}).'
             messages.error(self.request, message)
 
         return context

@@ -1,5 +1,6 @@
 from django.db import models
 from extenstions.utils import jalali_converter
+from django_jalali.db.models import jDateField
 
 # Create your models here.
 
