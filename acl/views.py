@@ -152,15 +152,9 @@ class UserPermissionsCreateView(PermissionMixin, CreateView):
     form_class = UserPermissionForm
     success_url = reverse_lazy('permission-user-list')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data()
-
-        if self.request.user.is_staff:
-            context['permissions'] = PERMISSIONS
-        else:
-            user_permissions = self.request.user.permissions
-            context['permissions'] = filter_permissions(PERMISSIONS, user_permissions)
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['permissions'] = Permission.objects.all()
         return context
 
 
@@ -171,16 +165,11 @@ class UserPermissionsUpdateView(PermissionMixin, UpdateView):
     template_name = 'acl/admin/user_permissions/form.html'
     success_url = reverse_lazy('permission-user-list')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data()
-
-        if self.request.user.is_staff:
-            context['permissions'] = PERMISSIONS
-        else:
-            user_permissions = self.request.user.permissions
-            context['permissions'] = filter_permissions(PERMISSIONS, user_permissions)
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['permissions'] = Permission.objects.all()
         return context
+
 
 
 class UserPermissionsDeleteView(PermissionMixin, DeleteView):

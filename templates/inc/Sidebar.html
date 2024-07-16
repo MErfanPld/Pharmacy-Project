@@ -12,49 +12,79 @@
     </div>
     <ul class="metismenu mm-show" id="menu">
       <li><a href="{% url 'dashboard' %}" class="ai-icon" aria-expanded="false"><i class="fa fa-dashboard"></i><span class="nav-text">داشبورد</span></a></li>
+      {% if request.user|has_perm:'user_list,user_create,user_edit,user_delete' %}
       <li>
         <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-user"></i><span class="nav-text">مدیریت کاربران</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
           <li>
             <a href="{% url 'users-list' %}">لیست کاربران</a>
           </li>
           <li>
-            <a href="{% url 'users-create' %}">افزودن کاربر جدید</a>
+            <a href="{% url 'users-create' %}">افزودن کاربر </a>
           </li>
         </ul>
       </li>
+      {% endif %}
 
+      {% if request.user|has_perm:'user_permissions_list,user_permissions_create,user_permissions_edit,user_permissions_delete' %}
+      <li>
+        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-lock"></i><span class="nav-text">مدیریت دسترسی </span></a><ul aria-expanded="false" class="mm-collapse mm-show">
+          <li>
+            <a href="{% url 'permission-user-list' %}">لیست دسترسی ها </a>
+          </li>
+          <li>
+            <a href="{% url 'permission-user-create' %}">افزودن دسترسی </a>
+          </li>
+        </ul>
+      </li>
+      {% endif %}
+
+      {% if request.user|has_perm:'category_drug_list,category_drug_create,category_drug_edit,category_drug_delete' %}
       <li>
         <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-list-alt"></i><span class="nav-text">مدیریت دسته بندی </span></a><ul aria-expanded="false" class="mm-collapse mm-show">
           <li>
             <a href="{% url 'category-drug-list' %}">لیست دسته بندی </a>
           </li>
           <li>
-            <a href="{% url 'category-drug-create' %}">افزودن دسته بندی جدید</a>
+            <a href="{% url 'category-drug-create' %}">افزودن دسته بندی </a>
           </li>
         </ul>
       </li>
+      {% endif %}
 
+      {% if request.user|has_perm:'drugs_list,drugs_create,drugs_edit,drugs_delete' %}
       <li>
         <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-stethoscope"></i><span class="nav-text">مدیریت دارو ها</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
           <li>
             <a href="{% url 'drug-list' %}">لیست دارو ها</a>
           </li>
           <li>
-            <a href="{% url 'drug-create' %}">افزودن دارو جدید</a>
+            <a href="{% url 'drug-create' %}">افزودن دارو </a>
         </ul>
       </li>
+      {% endif %}
 
+      {% if request.user|has_perm:'insurances_list,insurances_create,insurances_edit,insurances_delete' %}
       <li>
         <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-medkit"></i><span class="nav-text">مدیریت بیمه ها</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
           <li>
             <a href="{% url 'insurance-list' %}">لیست بیمه ها</a>
           </li>
           <li>
-            <a href="{% url 'insurance-create' %}">افزودن بیمه جدید</a>
+            <a href="{% url 'insurance-create' %}">افزودن بیمه </a>
           </li>
         </ul>
       </li>
+      {% endif %}
 
+      <li>
+        <a href="{% url 'logout' %}" class="ai-icon" aria-expanded="false">
+          {% comment %} <i class="fa fa-dashboard"></i> {% endcomment %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <span class="nav-text">خروج</span>
+          </form>
+          </a>
+      </li>
 
     </ul>
     <div class="copyright">

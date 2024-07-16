@@ -1,118 +1,48 @@
 {% extends 'admin/_Main.html' %}
-{% load i18n acl_tags %}
-{% load crispy_forms_filters %}
+{% load static %}
 {% load crispy_forms_tags %}
 
 {% block title %}
-  {% if object %}ویرایش نقش{% else %}افزودن نقش{% endif %}
+  {% if object %}
+    ویرایش دارو
+  {% else %}
+    افزودن دارو جدید
+  {% endif %}
 {% endblock %}
 
 {% block content %}
-<div class="row">
-  <div class="col-xl-12 col-xxl-12">
+<div class="col-lg-12">
     <div class="card">
-      <div class="card-header">
-        <h2 class="card-title"><b>{% if object %}ویرایش نقش{% else %}افزودن نقش جدید{% endif %}</b></h2>
-      </div>
-      <div class="card-body">
-        <div id="smartwizard" class="form-wizard order-create sw sw-theme-default sw-justified">
-          <div class="tab-content" style="height: auto;">
-            <div id="wizard_Service" class="tab-pane" role="tabpanel" style="display: block;">
-                <form class="form-horizontal" method="post" id="frm" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="row">
-                      {% for field in form %}
-                        {% if field.name != 'permissions' %}
-                          <div class="col-lg-6 col-md-6 col-sm-12 mb-3">
-                            <div class="form-group">
-                              <label for="id_{{ field.name }}" class="control-label">{{ field.label }}</label>
-                              {{ field|as_crispy_field }}
-                              {% if field.help_text %}
-                                <p><small style="font-size: 14px">{{ field.help_text|safe }}</small></p>
-                              {% endif %}
-                              {% if field.errors %}
-                                <p><small class="text-danger" style="font-size: 14px">{{ field.errors.0|safe }}</small></p>
-                              {% endif %}
-                              {% if field.non_field_errors %}
-                                <p><small class="text-danger" style="font-size: 20px">{{ field.non_field_errors.0|safe }}</small></p>
-                              {% endif %}
-                            </div>
-                          </div>
-                        {% else %}
-                          <input type="hidden" name="permissions" id="id_permissions" value="{{ form.permissions.value|join:',' }}">
-                        {% endif %}
-                      {% endfor %}
-                    </div>
-                    <hr />
-                    <div class="row mt-5">
-                      <div class="col-md-12 mb-5">
-                        <h4>
-                          <i class="fa fa-list"></i>
-                          دسترسی‌های مورد نظر را از لیست زیر انتخاب کنید.
-                        </h4>
-                      </div>
-                  
-                      {% parse_permission form.permissions.value as permissions_list %}
-                      {% for item in permissions %}
-                        <div class="col-md-12 mb-3">
-                          <p class="font-weight-bold">{{ item.title }}</p>
-                          <div class="row">
-                            {% for perm in item.permissions %}
-                              {% get_permission_id perm.code as perm_id %}
-                              <div class="col-lg-4 col-md-6 col-sm-12 mb-3">
-                                <label for="id_permissions_{{ perm.code }}">{{ perm.name }}</label>
-                                <label class="custom-switch">
-                                  <input type="checkbox" name="custom-switch-checkbox" id="id_permissions_{{ perm.code }}"
-                                    {% if perm_id|check_perm_selected:permissions_list %}checked{% endif %}
-                                    onclick="permListChange('{{ perm_id }}')" class="custom-switch-input">
-                                  <span class="custom-switch-indicator"></span>
-                                </label>
-                                <h6><small>{{ perm.description|default_if_none:'' }}</small></h6>
-                              </div>
-                            {% endfor %}
-                          </div>
-                        </div>
-                      {% endfor %}
-                  
-                      {% if form.permissions.errors %}
-                        <p><small class="text-danger" style="font-size: 14px">{{ form.permissions.errors.0|safe }}</small></p>
-                      {% endif %}
-                    </div>
-                    <div class="row">
-                      <div class="col-lg-12 text-left">
-                        <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger btn-border-radius waves-effect">بازگشت</a>
-                        <button class="btn btn-info btn-border-radius waves-effect" type="submit">ثبت</button>
-                      </div>
-                    </div>
-                  </form>
-                  
-            </div>
-          </div>
+        <div class="card-header">
+            <h4 class="card-title">{% if object %}ویرایش دسترسی{% else %}افزودن دسترسی جدید{% endif %}</h4>
         </div>
-      </div>
+        <div class="card-body">
+            <form method="post" novalidate>
+                {% csrf_token %}
+                {% for field in form %}
+                <div class="col-lg-6 col-md-6 col-sm-12 mb-2">
+                  <div class="mb-3">
+                    <label for="id_{{ field.name }}" class="text-label form-label"></label>
+                    {{ field | as_crispy_field }}
+                    {% if field.help_text %}
+                      <p><small style="font-size: 14px">{{ field.help_text|safe }} </small></p>
+                    {% endif %}
+                    {% if field.errors %}
+                      <p><small class="text-danger" style="font-size: 14px">{{ field.errors.0|safe }}</small></p>
+                    {% endif %}
+                    {% if field.non_field_errors %}
+                      <p><small class="text-danger" style="font-size: 20px">{{ field.non_field_errors.0|safe }}</small></p>
+                    {% endif %}
+                  </div>
+                </div>
+              {% endfor %}
+              <div class="col-lg-12">
+                <div class="m-1-25 m-b-20" style="float: left !important;">
+                  <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-square btn-danger btn-border-radius waves-effect">بازگشت</a>
+                  <button type='submit' class="btn btn-square btn-success">ثبت</button>
+                </div>
+              </div>            </form>
+        </div>
     </div>
-  </div>
 </div>
-{% endblock %}
-
-{% block Scripts %}
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let permissions = document.getElementById('id_permissions').value.split(',').map(Number).filter(Boolean);
-
-        window.permListChange = function (permID) {
-            permID = parseInt(permID);
-            let index = permissions.indexOf(permID);
-            if (index > -1) {
-                permissions.splice(index, 1);
-            } else {
-                permissions.push(permID);
-            }
-            document.getElementById('id_permissions').value = permissions.join(',');
-            console.log("Updated permissions: " + permissions); // لاگ گرفتن
-        };
-
-        console.log("Initial permissions: " + permissions); // لاگ اولیه
-    });
-</script>
 {% endblock %}

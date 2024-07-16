@@ -56,17 +56,17 @@ PERMISSIONS.append(DOCTORS_PERMISSIONS)
 
 ######################################################################
 
-TESTS_PERMISSIONS = {
-    'title': 'دسترسی آزمایش ها',
+DRUG_PERMISSIONS = {
+    'title': 'دسترسی دارو ها',
     'permissions': [
-        {'name': 'لیست آزمایش ها', 'code': 'tests_list', 'description': 'دسترسی لیست آزمایش ها'},
-        {'name': 'افزودن آزمایش ها', 'code': 'tests_create',
-         'description': 'دسترسی ساخت آزمایش ها جدید'},
-        {'name': 'ویرایش آزمایش ها', 'code': 'tests_edit', 'description': 'دسترسی ویرایش آزمایش ها'},
-        {'name': 'حذف آزمایش ها', 'code': 'tests_delete', 'description': 'دسترسی حذف آزمایش ها'},
+        {'name': 'لیست دارو ها', 'code': 'drugs_list', 'description': 'دسترسی لیست دارو ها'},
+        {'name': 'افزودن دارو ها', 'code': 'drugs_create',
+         'description': 'دسترسی ساخت دارو ها جدید'},
+        {'name': 'ویرایش دارو ها', 'code': 'drugs_edit', 'description': 'دسترسی ویرایش دارو ها'},
+        {'name': 'حذف دارو ها', 'code': 'drugs_delete', 'description': 'دسترسی حذف دارو ها'},
     ]
 }
-PERMISSIONS.append(TESTS_PERMISSIONS)
+PERMISSIONS.append(DRUG_PERMISSIONS)
 
 ######################################################################
 
@@ -84,17 +84,17 @@ PERMISSIONS.append(INSURANCES_PERMISSIONS)
 
 ######################################################################
 
-RECEPTIONS_PERMISSIONS = {
-    'title': 'دسترسی پذیرش ها',
+CATEGORY_DRUG_PERMISSIONS = {
+    'title': 'دسترسی دسته بندی دارو ها',
     'permissions': [
-        {'name': 'لیست پذیرش ها', 'code': 'receptions_list', 'description': 'دسترسی لیست پذیرش ها'},
-        {'name': 'افزودن پذیرش ها', 'code': 'receptions_create',
-         'description': 'دسترسی ساخت پذیرش ها جدید'},
-        {'name': 'ویرایش پذیرش ها', 'code': 'receptions_edit', 'description': 'دسترسی ویرایش پذیرش ها'},
-        {'name': 'حذف پذیرش ها', 'code': 'receptions_delete', 'description': 'دسترسی حذف پذیرش ها'},
+        {'name': 'لیست دسته بندی دارو ها', 'code': 'category_drug_list', 'description': 'دسترسی لیست دسته بندی دارو ها'},
+        {'name': 'افزودن دسته بندی دارو ها', 'code': 'category_drug_create',
+         'description': 'دسترسی ساخت دسته بندی دارو ها جدید'},
+        {'name': 'ویرایش دسته بندی دارو ها', 'code': 'category_drug_edit', 'description': 'دسترسی ویرایش دسته بندی دارو ها'},
+        {'name': 'حذف دسته بندی دارو ها', 'code': 'category_drug_delete', 'description': 'دسترسی حذف دسته بندی دارو ها'},
     ]
 }
-PERMISSIONS.append(RECEPTIONS_PERMISSIONS)
+PERMISSIONS.append(CATEGORY_DRUG_PERMISSIONS)
 
 ######################################################################
 

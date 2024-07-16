@@ -19,11 +19,10 @@
             <th scope="row">{{ item.id }}</th>
             <td>{{ item.user | default:'---' }}</td>
             <td>
-                <div class="dash_action_link">
-                    <a href="{% url 'permission-user-update' item.id %}" class="view">ویرایش</a>
-                    <a href="{% url 'permission-user-delete' item.id %}" class="cancel">حذف</a>
+                <div class="d-flex">
+                  <a href="{% url 'permission-user-update' item.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="{% url 'permission-user-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                 </div>
-            </td>
+              </td>
         </tr>
     {% endfor %}
     </tbody>

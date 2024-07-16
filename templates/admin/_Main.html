@@ -31,6 +31,10 @@
       </div>
     </div>
     <div id="main-wrapper">
+
+      {% if user.is_authenticated %}
+
+
       {% include '../inc/Navbar.html' %}
       {% include '../inc/Sidebar.html' %}
 
@@ -84,6 +88,29 @@
       </div>
 
       {% include '../inc/Footer.html' %}
+      {% else %}
+      <div class="row align-items-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="dashboard_container">
+            <div class="dashboard_container_body p-4">
+              <div class="viewer_detail_wraps">
+                <div class="viewer_detail_thumb"></div>
+                <div class="caption">
+                  <div class="viewer_header">
+                    <h4>لطفا برای مشاهده داشبورد لاگین کنید</h4>
+                    <span class="viewer_location">
+                      <a class="btn btn-primary" href="{% url 'login' %}" style="padding: 10px 20px; margin: 8px;font-size: 16px; border-radius: 5px;">
+                        ورود
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

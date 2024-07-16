@@ -148,7 +148,7 @@ AUTH_USER_MODEL = 'users.User'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-LOGIN_URL = '/login'
+LOGIN_URL = '/dashboard/accounts/login/'
 
 
 # Celery

@@ -13,7 +13,7 @@ from .forms import CategoryDrugForm, DrugForm
 # ==================== CATEGORY DRUG ====================
 
 class CategoryDrugListView(PermissionMixin, ListView):
-    permissions = ['medicines_list']
+    permissions = ['category_drug_list']
     model = CategoryDrug
     context_object_name = 'category_drugs'
     ordering = ['-created_at']
@@ -29,7 +29,7 @@ class CategoryDrugListView(PermissionMixin, ListView):
 
 
 class CategoryDrugCreateView(PermissionMixin, CreateView):
-    permissions = ['medicines_create']
+    permissions = ['category_drug_create']
     template_name = "medicines/category/form.html"
     model = CategoryDrug
     form_class = CategoryDrugForm
@@ -37,7 +37,7 @@ class CategoryDrugCreateView(PermissionMixin, CreateView):
 
 
 class CategoryDrugUpdateView(PermissionMixin, UpdateView):
-    permissions = ['medicines_edit']
+    permissions = ['category_drug_edit']
     template_name = "medicines/category/form.html"
     model = CategoryDrug
     form_class = CategoryDrugForm
@@ -45,7 +45,7 @@ class CategoryDrugUpdateView(PermissionMixin, UpdateView):
 
 
 class CategoryDrugDeleteView(PermissionMixin, DeleteView):
-    permissions = ['medicines_delete']
+    permissions = ['category_drug_delete']
     model = CategoryDrug
     template_name = 'medicines/category/confirm_delete.html'
     success_url = reverse_lazy("category-drug-list")
@@ -60,7 +60,7 @@ class CategoryDrugDeleteView(PermissionMixin, DeleteView):
 
 
 class DrugListView(PermissionMixin, ListView):
-    permissions = ['medicines_list']
+    permissions = ['drugs_list']
     model = Drug
     context_object_name = 'drugs'
     ordering = ['-created_at']
@@ -72,7 +72,7 @@ class DrugListView(PermissionMixin, ListView):
 
 
 class DrugCreateView(PermissionMixin, CreateView):
-    permissions = ['medicines_create']
+    permissions = ['drugs_create']
     template_name = "medicines/form.html"
     model = Drug
     form_class = DrugForm
@@ -80,7 +80,7 @@ class DrugCreateView(PermissionMixin, CreateView):
 
 
 class DrugUpdateView(PermissionMixin, UpdateView):
-    permissions = ['medicines_edit']
+    permissions = ['drugs_edit']
     template_name = "medicines/form.html"
     model = Drug
     form_class = DrugForm
@@ -88,7 +88,7 @@ class DrugUpdateView(PermissionMixin, UpdateView):
 
 
 class DrugDeleteView(PermissionMixin, DeleteView):
-    permissions = ['medicines_delete']
+    permissions = ['drugs_delete']
     model = Drug
     template_name = 'medicines/confirm_delete.html'
     success_url = reverse_lazy("drug-list")
