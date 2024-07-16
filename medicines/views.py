@@ -70,31 +70,6 @@ class DrugListView(PermissionMixin, ListView):
         queryset = super().get_queryset()
         return DrugFilters(data=self.request.GET, queryset=queryset).qs
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # هشدارهای موجودی کم
-        low_stock_drugs = Drug.objects.filter(quantity__range=(1, 10))
-        for drug in low_stock_drugs:
-            message = f'تعداد {drug.name} کمتر از {drug.quantity} هست.'
-            messages.warning(self.request, message)
-
-        # هشدارهای موجودی صفر
-        end_stock_threshold = 0
-        end_stock_drugs = Drug.objects.filter(quantity__lte=end_stock_threshold)
-        for drug in end_stock_drugs:
-            message = f'محصول {drug.name} به اتمام رسیده هست.'
-            messages.error(self.request, message)
-
-        # هشدارهای تاریخ انقضا نزدیک
-        today = datetime.today().date()
-        expiry_threshold = today + timedelta(days=1)
-        near_expiry_drugs = Drug.objects.filter(expiration_date__lte=expiry_threshold)
-        for drug in near_expiry_drugs:
-            message = f'تاریخ انقضای {drug.name} نزدیک است ({drug.jexpiration_date()}).'
-            messages.error(self.request, message)
-
-        return context
 
 class DrugCreateView(PermissionMixin, CreateView):
     permissions = ['medicines_create']

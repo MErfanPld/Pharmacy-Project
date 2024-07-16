@@ -532,29 +532,25 @@
               <div id="DZ_W_Notification1" class="widget-media dz-scroll p-3" style="height:380px;">
                 <ul class="timeline">
                   {% if messages %}
-                    {% for message in messages %}
-                      <li>
-                        <div class="timeline-panel">
-                          <div class="media-body">
-                            <h6 class="mb-1 alert {% if message.tags %}
-                            alert-{{ message.tags }}
-                          {% endif %}">{{ message }}</h6>
-                          </div>
-                        </div>
-                      </li>
-                    {% endfor %}
-                    {% else %}
-                    <li>
+                  {% for message in messages %}
+                  <li>
                       <div class="timeline-panel">
-                        <div class="media-body">
-                          <h6 class="mb-1">هشداری وجود ندارد</h6>
-                        </div>
+                          <div class="media-body">
+                              <h6 class="mb-1 alert alert-{{ message.tags }}">{{ message }}</h6>
+                          </div>
                       </div>
-                    </li>
-                  {% endif %}
+                  </li>
+                  {% endfor %}
+              {% else %}
+              <li>
+                  <div class="timeline-panel">
+                      <div class="media-body">
+                          <h6 class="mb-1">هشداری وجود ندارد</h6>
+                      </div>
+                  </div>
+              </li>
+              {% endif %}
                 </ul>
-              </div>
-              {% comment %} <a class="all-notification" href="javascript:void(0);">مشاهده همه اعلان ها<i class="ti-arrow-end"></i></a> {% endcomment %}
             </div>
           </li>
           <li class="nav-item dropdown notification_dropdown">
