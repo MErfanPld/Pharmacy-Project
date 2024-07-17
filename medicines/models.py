@@ -52,7 +52,7 @@ class Drug(models.Model):
     )
 
     def __str__(self):
-        return f"{self.name} | {self.category} |{self.status} "
+        return f"{self.name} | {self.category}"
 
     class Meta:
         verbose_name = 'دارو'

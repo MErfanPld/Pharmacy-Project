@@ -1,0 +1,8 @@
+{% load custom_filters %}
+
+<h1>پرداخت</h1>
+<p>جمع کل: {{ order.items.all|sum_price}} تومان</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">پرداخت</button>
+</form>

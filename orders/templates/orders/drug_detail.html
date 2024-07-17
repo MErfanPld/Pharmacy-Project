@@ -1,0 +1,11 @@
+<h1>{{ drug.name }}</h1>
+<p>{{ drug.description }}</p>
+<p>قیمت: {{ drug.price }} تومان</p>
+<p>تعداد موجود: {{ drug.quantity }}</p>
+<form method="post" action="{% url 'add_to_order' %}">
+    {% csrf_token %}
+    <input type="hidden" name="drug_id" value="{{ drug.id }}">
+    <label for="quantity">تعداد:</label>
+    <input type="number" name="quantity" min="1" max="{{ drug.quantity }}" required>
+    <button type="submit">افزودن به سبد خرید</button>
+</form>

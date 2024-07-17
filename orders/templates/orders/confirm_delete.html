@@ -13,12 +13,12 @@
         </h4>
         </div>
         <div class="card-body">
-            <p>آیا مطمئن هستید که می‌خواهید این بیمه را حذف کنید؟</p>
+            <p>آیا مطمئن هستید که می‌خواهید این سفارش را حذف کنید؟</p>
             <div class="bootstrap-modal">
                 <form method="post">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger">حذف</button>
-                    <a href="{% url 'insurance-list' %}" class="btn btn-secondary">لغو</a>
+                    <a href="{% url 'order-list' %}" class="btn btn-secondary">لغو</a>
                   </form>
           </div>
         </div>

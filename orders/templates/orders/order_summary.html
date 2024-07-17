@@ -1,0 +1,10 @@
+{% load custom_filters %}
+
+<h1>خلاصه سفارش</h1>
+<ul>
+    {% for item in order.items.all %}
+    <li>{{ item.drug.name }} - {{ item.quantity }} x {{ item.price }} تومان</li>
+    {% endfor %}
+</ul>
+<p>جمع کل: {{ order.items.all|sum_price }} تومان</p>
+<a href="{% url 'payment' %}">پرداخت</a>

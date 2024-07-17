@@ -1,0 +1,8 @@
+<h1>لیست داروها</h1>
+<ul>
+    {% for drug in drugs %}
+    <li>
+        <a href="{% url 'drug_detail' drug.pk %}">{{ drug.name }}</a> - {{ drug.price }} تومان
+    </li>
+    {% endfor %}
+</ul>
