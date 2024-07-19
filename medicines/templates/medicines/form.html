@@ -63,3 +63,27 @@
 
 
 {% endblock %}
+
+{% block js %}
+
+    <script>
+        kamaDatepicker('id_expiration_date', {
+            placeholder: "Expiration date"
+            , nextButtonIcon: "fa fa-arrow-circle-right"
+            , previousButtonIcon: "fa fa-arrow-circle-left"
+            , buttonsColor: "orange"
+            , markToday: true
+            , markHolidays: true
+            , highlightSelectedDay: true
+            , sync: true
+            , gotoToday: true
+        });
+
+        $("#id_expiration_date").attr('autocomplete', 'off');
+
+        $('#id_expiration_date').on('change', function () {
+            $('#id_expiration_date').val($('#id_expiration_date').val().replaceAll('/', '-'))
+        });
+    </script>
+
+{% endblock %}

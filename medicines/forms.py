@@ -25,10 +25,10 @@ class CategoryDrugForm(forms.ModelForm):
 
 
 class DrugForm(forms.ModelForm):
-    expiration_date = forms.DateField(widget=forms.DateInput(attrs={
-        'class': 'form-control',
-        'type': 'date'
-    }))
+    # expiration_date = forms.DateField(widget=forms.DateInput(attrs={
+    #     'class': 'form-control',
+    #     'type': 'date'
+    # }))
 
     class Meta:
         model = Drug

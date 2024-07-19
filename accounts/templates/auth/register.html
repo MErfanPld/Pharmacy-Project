@@ -6,7 +6,7 @@
     <div class="text-center mb-3"></div>
     <h4 class="text-center mb-4">ثبت نام حساب کاربری</h4>
     <form method="post">
-      {% if messages %}
+        {% if messages and request.session.verify_phone %}
         {% for item in messages %}
           <p class="text-center text-success justify-content-center">{{ item }}</p>
         {% endfor %}

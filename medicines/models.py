@@ -44,7 +44,7 @@ class Drug(models.Model):
     quantity = models.IntegerField(verbose_name="تعداد")
     threshold = models.IntegerField(default=10)
     manufacturer = models.CharField(max_length=255, verbose_name="تولید کننده")
-    expiration_date = models.DateField(verbose_name="تاریخ انقضا")
+    expiration_date = models.CharField(verbose_name="تاریخ انقضا", max_length=255)
     status = models.BooleanField(default=False, verbose_name="وضعیت")
     created_at = models.DateTimeField(
         auto_now_add=True,
@@ -66,4 +66,5 @@ class Drug(models.Model):
         return jalali_converter(self.created_at)
 
     def jexpiration_date(self):
-        return jalali_converter(self.expiration_date)
+        return self.expiration_date.replace('-', '/')
+        # return jalali_converter(self.expiration_date)
