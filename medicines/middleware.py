@@ -11,7 +11,7 @@ class DrugAlertMiddleware:
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        if not hasattr(request, 'alerts_added') or not request.alerts_added:
+        if (not hasattr(request, 'alerts_added') or not request.alerts_added) and '/accounts/' not in request.path:
             self.add_alerts(request)
             request.alerts_added = True
 
