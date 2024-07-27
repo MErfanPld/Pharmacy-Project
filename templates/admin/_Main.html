@@ -1,149 +1,1478 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html dir="rtl" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
-    <meta name="robots" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Boltz : Crypto Admin Template" />
-    <meta property="og:title" content="Boltz : Crypto Admin Template" />
-    <meta property="og:description" content="Boltz : Crypto Admin Template" />
-    <meta property="og:image" content="https://boltz.dexignzone.com/xhtml/social-image.png" />
-    <meta name="format-detection" content="telephone=no" />
+<html direction="rtl" dir="rtl" style="direction: rtl">
+<!--begin::Head-->
+<head>
+    <base href=""/>
     <title>
-      {% block title %}
-        مدیریت داروخانه
-      {% endblock %}
+        {% block title %}
+            مدیریت داروخانه
+        {% endblock %}
     </title>
-    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
-    <link href="{% static 'vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet" />
-    <link href="{% static 'vendor/jquery-nice-select/css/nice-select.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-    <link href="{% static 'css/kamadatepicker.min.css' %}" rel="stylesheet" />
-  </head>
-  <body ng-app="myApp" ng-controller="myCtrl">
-    <div id="preloader">
-      <div class="loader">
-        <span>مدیریت</span><span>داروخانه</span>
-      </div>
-    </div>
-    <div id="main-wrapper">
-
-      {% if user.is_authenticated %}
-
-
-      {% include '../inc/Navbar.html' %}
-      {% include '../inc/Sidebar.html' %}
-
-      <div class="content-body">
-        <div class="container-fluid">
-          {% block messages %}
-            <style>
-              .alert {
-                padding: 10px;
-                margin-bottom: 10px;
-                border-radius: 5px;
-              }
-              
-              .alert-success {
-                background-color: #d4edda;
-                color: #155724;
-              }
-              
-              .alert-error {
-                background-color: #f8d7da;
-                color: #721c24;
-              }
-              
-              .alert-warning {
-                background-color: #fff3cd;
-                color: #856404;
-              }
-              
-              .alert-info {
-                background-color: #d1ecf1;
-                color: #0c5460;
-              }
-            </style>
-
-            {% if messages %}
-            <div class="notifications">
-                {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
+    <meta charset="utf-8"/>
+    <meta name="description"
+          content="The most advanced Bootstrap 5 Admin Theme with 40 unique prebuilt layouts on Themeforest trusted by 100,000 beginners و professionals. Multi-demo, حالت تیره, RTL support و complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel versions. Grab your copy now و get life-time updates for free."/>
+    <meta name="keywords"
+          content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Express.js, Node.js, Flask, Symfony & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:type" content="article"/>
+    <meta property="og:title"
+          content="مترونیک - پنل ادمین بوت استراپ Template, HTML, VueJS, React, Angular. Laravel, Asp.Net Core, روبی روی ریل, Spring Boot, Blazor, Django, Express.js, Node.js, Flask Admin داشبورد Theme & Template"/>
+    <meta property="og:url" content="https://keenthemes.com/metronic"/>
+    <meta property="og:site_name" content="ساتراس وب | مترونیک"/>
+    <link rel="canonical" href="Https://preview.keenthemes.com/metronic8"/>
+    <link rel="shortcut icon" href="{% static 'media/logos/favicon.ico' %}"/>
+    <!--begin::Fonts(mوatory for all pages)-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700"/>
+    <!--end::Fonts-->
+    <!--begin::Vendor Stylesheets(used for this page only)-->
+    <link href="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'plugins/custom/datatables/datatables.bundle.css' %}" rel="stylesheet" type="text/css"/>
+    <!--end::Vendor Stylesheets-->
+    <!--begin::Global Stylesheets Bundle(mوatory for all pages)-->
+    <link href="{% static 'plugins/global/plugins.bundle.rtl.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/style.bundle.rtl.css' %}" rel="stylesheet" type="text/css"/>
+    <!--end::Global Stylesheets Bundle-->
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_app_body" ng-app="myApp" ng-controller="myCtrl" data-kt-app-layout="dark-sidebar"
+      data-kt-app-header-fixed="true"
+      data-kt-app-sidebar-enabled="true" data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-hoverable="true"
+      data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true"
+      data-kt-app-sidebar-push-footer="true" data-kt-app-toolbar-enabled="true" class="app-default">
+<!--begin::Theme mode setup on page load-->
+<script>var defaultThemeMode = "light";
+var themeMode;
+if (document.documentElement) {
+    if (document.documentElement.hasAttribute("data-bs-theme-mode")) {
+        themeMode = document.documentElement.getAttribute("data-bs-theme-mode");
+    } else {
+        if (localStorage.getآیتم("data-bs-theme") !== null) {
+            themeMode = localStorage.getآیتم("data-bs-theme");
+        } else {
+            themeMode = defaultThemeMode;
+        }
+    }
+    if (themeMode === "system") {
+        themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-bs-theme", themeMode);
+}</script>
+<!--end::Theme mode setup on page load-->
+<!--begin::اپلیکیشن-->
+{% if user.is_authenticated %}
+    <div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <!--begin::Page-->
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
+    <!--begin::Header-->
+    <div id="kt_app_header" class="app-header">
+        <!--begin::Header container-->
+        <div class="app-container container-fluid d-flex align-items-stretch justify-content-between"
+             id="kt_app_header_container">
+            <!--begin::Sidebar mobile toggle-->
+            <div class="d-flex align-items-center d-lg-none ms-n3 me-1 me-md-2" title="مشاهده sidebar menu">
+                <div class="btn btn-icon btn-active-color-primary w-35px h-35px" id="kt_app_sidebar_mobile_toggle">
+                    <i class="ki-duotone ki-abstract-14 fs-2 fs-md-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
                 </div>
-                {% endfor %}
             </div>
-            {% endif %}
-
-          {% endblock %}
-
-          {% block content %}
-
-          {% endblock %}
+            <!--end::Sidebar mobile toggle-->
+            <!--begin::Mobile logo-->
+            <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
+                <a href="../../demo1/dist/index.html" class="d-lg-none">
+                    <img alt="Logo" src="{% static 'media/logos/default-small.svg' %}" class="h-30px"/>
+                </a>
+            </div>
+            <!--end::Mobile logo-->
+            <!--begin::Header wrapper-->
+            {% include '../inc/Navbar.html' %}
+            <!--end::Header wrapper-->
         </div>
-      </div>
+        <!--end::Header container-->
+    </div>
+    <!--end::Header-->
+    <!--begin::Wrapper-->
+    <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+        <!--begin::Sidebar-->
+        <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
+             data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true"
+             data-kt-drawer-width="225px" data-kt-drawer-direction="start"
+             data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
+            <!--begin::Logo-->
+            <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
+                <!--begin::Logo image-->
+                <a href="../../demo1/dist/index.html">
+                    <img alt="Logo" src="{% static 'media/logos/default-dark.svg' %}"
+                         class="h-25px app-sidebar-logo-default"/>
+                    <img alt="Logo" src="{% static 'media/logos/default-small.svg' %}"
+                         class="h-20px app-sidebar-logo-minimize"/>
+                </a>
 
-      {% include '../inc/Footer.html' %}
-      {% else %}
-      <div class="row align-items-center">
+                <div id="kt_app_sidebar_toggle"
+                     class="app-sidebar-toggle btn btn-icon btn-shadow btn-sm btn-color-muted btn-active-color-primary body-bg h-30px w-30px position-absolute top-50 start-100 translate-middle rotate"
+                     data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body"
+                     data-kt-toggle-name="app-sidebar-minimize">
+                    <i class="ki-duotone ki-double-left fs-2 rotate-180">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+                <!--end::Sidebar toggle-->
+            </div>
+            <!--end::Logo-->
+            <!--begin::sidebar menu-->
+            {% include '../inc/Sidebar.html' %}
+            <!--end::sidebar menu-->
+        </div>
+        <!--end::Sidebar-->
+        <!--begin::Main-->
+        {% block content %} {% endblock %}
+    </div>
+    {% include 'inc/messages.html' %}
+    <!--end::فعالیتها drawer-->
+    <!--begin::چت drawer-->
+    <div id="kt_drawer_chat" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="chat"
+         data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
+         data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end"
+         data-kt-drawer-toggle="#kt_drawer_chat_toggle" data-kt-drawer-close="#kt_drawer_chat_close">
+        <!--begin::Messenger-->
+        <div class="card w-100 border-0 rounded-0" id="kt_drawer_chat_messenger">
+            <!--begin::کارت header-->
+            <div class="card-header pe-5" id="kt_drawer_chat_messenger_header">
+                <!--begin::Title-->
+                <div class="card-title">
+                    <!--begin::user-->
+                    <div class="d-flex justify-content-center flex-column me-3">
+                        <a href="#" class="fs-4 fw-bold text-gray-900 text-hover-primary me-1 mb-2 lh-1">رضا علی
+                            ابادی</a>
+                        <!--begin::Info-->
+                        <div class="mb-0 lh-1">
+                            <span class="badge badge-success badge-circle w-10px h-10px me-1"></span>
+                            <span class="fs-7 fw-semibold text-muted">فعال</span>
+                        </div>
+                        <!--end::Info-->
+                    </div>
+                    <!--end::user-->
+                </div>
+                <!--end::Title-->
+                <!--begin::کارت toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Menu-->
+                    <div class="me-0">
+                        <button class="btn btn-sm btn-icon btn-active-color-primary" data-kt-menu-trigger="click"
+                                data-kt-menu-placement="bottom-end">
+                            <i class="ki-duotone ki-dots-square fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                                <span class="path3"></span>
+                                <span class="path4"></span>
+                            </i>
+                        </button>
+                        <!--begin::Menu 3-->
+                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-semibold w-200px py-3"
+                             data-kt-menu="true">
+                            <!--begin::Heading-->
+                            <div class="menu-item px-3">
+                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">مخاطبین</div>
+                            </div>
+                            <!--end::Heading-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-bs-toggle="modal"
+                                   data-bs-target="#kt_modal_users_search">افزودن مخاطب</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link flex-stack px-3" data-bs-toggle="modal"
+                                   data-bs-target="#kt_modal_invite_friends">دعوت مخاطبین
+                                    <span class="ms-2" data-bs-toggle="tooltip"
+                                          title="برای ارسال دعوت نامه یک ایمیل تماس مشخص کنید">
+										<i class="ki-duotone ki-information fs-7">
+											<span class="path1"></span>
+											<span class="path2"></span>
+											<span class="path3"></span>
+										</i>
+									</span></a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3" data-kt-menu-trigger="hover"
+                                 data-kt-menu-placement="left-start">
+                                <a href="#" class="menu-link px-3">
+                                    <span class="menu-title">گروه ها</span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <!--begin::Menu sub-->
+                                <div class="menu-sub menu-sub-dropdown w-175px py-4">
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="بزودی">ساختن
+                                            گروه</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="بزودی">دعوت
+                                            کاربران</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                    <!--begin::Menu item-->
+                                    <div class="menu-item px-3">
+                                        <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="بزودی">تنظیمات</a>
+                                    </div>
+                                    <!--end::Menu item-->
+                                </div>
+                                <!--end::Menu sub-->
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3 my-1">
+                                <a href="#" class="menu-link px-3" data-bs-toggle="tooltip" title="بزودی">تنظیمات</a>
+                            </div>
+                            <!--end::Menu item-->
+                        </div>
+                        <!--end::Menu 3-->
+                    </div>
+                    <!--end::Menu-->
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" id="kt_drawer_chat_close">
+                        <i class="ki-duotone ki-cross-square fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::کارت toolbar-->
+            </div>
+            <!--end::کارت header-->
+            <!--begin::کارت body-->
+            <div class="card-body" id="kt_drawer_chat_messenger_body">
+                <!--begin::پیام ها-->
+                <div class="scroll-y me-n5 pe-5" data-kt-element="messages" data-kt-scroll="true"
+                     data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+                     data-kt-scroll-dependencies="#kt_drawer_chat_messenger_header, #kt_drawer_chat_messenger_footer"
+                     data-kt-scroll-wrappers="#kt_drawer_chat_messenger_body" data-kt-scroll-offset="0px">
+                    <!--begin::پیام(in)-->
+                    <div class="d-flex justify-content-start mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-start">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::Details-->
+                                <div class="ms-3">
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">رضا علی
+                                        ابادی</a>
+                                    <span class="text-muted fs-7 mb-1">دو دقیقه پیش</span>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
+                                 data-kt-element="message-text">چقدر احتمال دارد که شرکت ما را به دوستان و خانواده خود
+                                پیشنهاد دهید؟?
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(in)-->
+                    <!--begin::پیام(out)-->
+                    <div class="d-flex justify-content-end mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-end">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Details-->
+                                <div class="me-3">
+                                    <span class="text-muted fs-7 mb-1">5دقیقه پیش</span>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">شما</a>
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-1.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
+                                 data-kt-element="message-text">سلام ، ما فقط در حال نوشتن هستیم تا به شما اطلاع دهیم که
+                                در مخزن گیت هاب مشترک شده اید.
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(out)-->
+                    <!--begin::پیام(in)-->
+                    <div class="d-flex justify-content-start mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-start">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::Details-->
+                                <div class="ms-3">
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">رضا علی
+                                        ابادی</a>
+                                    <span class="text-muted fs-7 mb-1">یکساعت پیش</span>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
+                                 data-kt-element="message-text">بله فهمیدم
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(in)-->
+                    <!--begin::پیام(out)-->
+                    <div class="d-flex justify-content-end mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-end">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Details-->
+                                <div class="me-3">
+                                    <span class="text-muted fs-7 mb-1">2 ساعت</span>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">شما</a>
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-1.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
+                                 data-kt-element="message-text">شما برای همه موارد اعلان دریافت خواهید کرد ، درخواستها
+                                را بکشید!
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(out)-->
+                    <!--begin::پیام(in)-->
+                    <div class="d-flex justify-content-start mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-start">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::Details-->
+                                <div class="ms-3">
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">رضا علی
+                                        ابادی</a>
+                                    <span class="text-muted fs-7 mb-1">3 ساعت</span>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
+                                 data-kt-element="message-text">شما می توانید با فشردن اینجا بلافاصله این مخزن را باز
+                                کنید:
+                                <a href="https://keenthemes.com">satrasweb.ir</a></div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(in)-->
+                    <!--begin::پیام(out)-->
+                    <div class="d-flex justify-content-end mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-end">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Details-->
+                                <div class="me-3">
+                                    <span class="text-muted fs-7 mb-1">4 ساعت</span>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">شما</a>
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-1.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
+                                 data-kt-element="message-text">بیشتر دوره های بازرگانی خریداری شده در طول این فروش!
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(out)-->
+                    <!--begin::پیام(in)-->
+                    <div class="d-flex justify-content-start mb-10">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-start">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::Details-->
+                                <div class="ms-3">
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">رضا علی
+                                        ابادی</a>
+                                    <span class="text-muted fs-7 mb-1">5 ساعت</span>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
+                                 data-kt-element="message-text">کمپانی BBQ برای جشن گرفتن دستاوردها و اهداف سه ماهه آخر.
+                                غذا و نوشیدنی ارائه می شود
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(in)-->
+                    <!--begin::پیام(template for out)-->
+                    <div class="d-flex justify-content-end mb-10 d-none" data-kt-element="template-out">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-end">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Details-->
+                                <div class="me-3">
+                                    <span class="text-muted fs-7 mb-1">فقط</span>
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary ms-1">شما</a>
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-1.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-primary text-dark fw-semibold mw-lg-400px text-end"
+                                 data-kt-element="message-text"></div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(template for out)-->
+                    <!--begin::پیام(template for in)-->
+                    <div class="d-flex justify-content-start mb-10 d-none" data-kt-element="template-in">
+                        <!--begin::Wrapper-->
+                        <div class="d-flex flex-column align-items-start">
+                            <!--begin::user-->
+                            <div class="d-flex align-items-center mb-2">
+                                <!--begin::Avatar-->
+                                <div class="symbol symbol-35px symbol-circle">
+                                    <img alt="Pic" src="assets/media/avatars/300-25.jpg"/>
+                                </div>
+                                <!--end::Avatar-->
+                                <!--begin::Details-->
+                                <div class="ms-3">
+                                    <a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary me-1">رضا علی
+                                        ابادی</a>
+                                    <span class="text-muted fs-7 mb-1">فقط</span>
+                                </div>
+                                <!--end::Details-->
+                            </div>
+                            <!--end::user-->
+                            <!--begin::Text-->
+                            <div class="p-5 rounded bg-light-info text-dark fw-semibold mw-lg-400px text-start"
+                                 data-kt-element="message-text">Right before vacation season we have the next Bigمعامله
+                                for you.
+                            </div>
+                            <!--end::Text-->
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::پیام(template for in)-->
+                </div>
+                <!--end::پیام ها-->
+            </div>
+            <!--end::کارت body-->
+            <!--begin::کارت footer-->
+            <div class="card-footer pt-4" id="kt_drawer_chat_messenger_footer">
+                <!--begin::Input-->
+                <textarea class="form-control form-control-flush mb-3" rows="1" data-kt-element="input"
+                          placeholder="نوشتن پیام"></textarea>
+                <!--end::Input-->
+                <!--begin:Toolbar-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Actions-->
+                    <div class="d-flex align-items-center me-2">
+                        <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button"
+                                data-bs-toggle="tooltip" title="بزودی">
+                            <i class="ki-duotone ki-paper-clip fs-3"></i>
+                        </button>
+                        <button class="btn btn-sm btn-icon btn-active-light-primary me-1" type="button"
+                                data-bs-toggle="tooltip" title="بزودی">
+                            <i class="ki-duotone ki-cloud-add fs-3">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                    <!--begin::ارسال-->
+                    <button class="btn btn-primary" type="button" data-kt-element="send">ارسال</button>
+                    <!--end::ارسال-->
+                </div>
+                <!--end::Toolbar-->
+            </div>
+            <!--end::کارت footer-->
+        </div>
+        <!--end::Messenger-->
+    </div>
+    <!--begin::چت drawer-->
+    <div id="kt_خرید_سبد" class="bg-body" data-kt-drawer="true" data-kt-drawer-name="سبد" data-kt-drawer-activate="true"
+         data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}"
+         data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_خرید_سبد_toggle"
+         data-kt-drawer-close="#kt_drawer_خرید_سبد_close">
+        <!--begin::Messenger-->
+        <div class="card card-flush w-100 rounded-0">
+            <!--begin::کارت header-->
+            <div class="card-header">
+                <!--begin::Title-->
+                <h3 class="card-title text-gray-900 fw-bold">سبد خرید</h3>
+                <!--end::Title-->
+                <!--begin::کارت toolbar-->
+                <div class="card-toolbar">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_خرید_سبد_close">
+                        <i class="ki-duotone ki-cross fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::کارت toolbar-->
+            </div>
+            <!--end::کارت header-->
+            <!--begin::کارت body-->
+            <div class="card-body hover-scroll-overlay-y h-400px pt-5">
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">ایبلندر</a>
+                            <span class="text-gray-400 fw-semibold d-block">بهترین گجت آشپزخانه در سال 2022</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 350</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">5</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-1.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">پاک کننده هوشمند</a>
+                            <span class="text-gray-400 fw-semibold d-block">ابزار هوشمند برای پخت و پز</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 650</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">4</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-3.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">دوربین</a>
+                            <span class="text-gray-400 fw-semibold d-block">دوربین حرفه ای حرفه ای برای لبه</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 150</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">3</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-8.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">$D پرینتer</a>
+                            <span class="text-gray-400 fw-semibold d-block">Manfactoring unique objekts</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 1450</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">7</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-26.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">MotionWire</a>
+                            <span class="text-gray-400 fw-semibold d-block">Perfect animation tool</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 650</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">7</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-21.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">Samsung</a>
+                            <span class="text-gray-400 fw-semibold d-block">پروفایل info,timeline etc</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 720</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">6</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-34.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+                <!--begin::Separator-->
+                <div class="separator separator-dashed my-6"></div>
+                <!--end::Separator-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column me-3">
+                        <!--begin::بخش-->
+                        <div class="mb-3">
+                            <a href="../../demo1/dist/apps/ecommerce/sales/details.html"
+                               class="text-gray-800 text-hover-primary fs-4 fw-bold">$D پرینتer</a>
+                            <span class="text-gray-400 fw-semibold d-block">Manfactoring unique objekts</span>
+                        </div>
+                        <!--end::بخش-->
+                        <!--begin::بخش-->
+                        <div class="d-flex align-items-center">
+                            <span class="fw-bold text-gray-800 fs-5">$ 430</span>
+                            <span class="text-muted mx-2">برای</span>
+                            <span class="fw-bold text-gray-800 fs-5 me-3">8</span>
+                            <a href="#"
+                               class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                                <i class="ki-duotone ki-minus fs-4"></i>
+                            </a>
+                            <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                                <i class="ki-duotone ki-plus fs-4"></i>
+                            </a>
+                        </div>
+                        <!--end::Wrapper-->
+                    </div>
+                    <!--end::Wrapper-->
+                    <!--begin::Pic-->
+                    <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                        <img src="assets/media/stock/600x400/img-27.jpg" alt=""/>
+                    </div>
+                    <!--end::Pic-->
+                </div>
+                <!--end::آیتم-->
+            </div>
+            <!--end::کارت body-->
+            <!--begin::کارت footer-->
+            <div class="card-footer">
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <span class="fw-bold text-gray-600">کل</span>
+                    <span class="text-gray-800 fw-bolder fs-5">$ 1840.00</span>
+                </div>
+                <!--end::آیتم-->
+                <!--begin::آیتم-->
+                <div class="d-flex flex-stack">
+                    <span class="fw-bold text-gray-600">زیر مجموع</span>
+                    <span class="text-primary fw-bolder fs-5">$ 246.35</span>
+                </div>
+                <!--end::آیتم-->
+                <!--end::Actions-->
+                <div class="d-flex justify-content-end mt-9">
+                    <a href="#" class="btn btn-primary d-flex justify-content-end">ثبت سفارش</a>
+                </div>
+                <!--end::Actions-->
+            </div>
+            <!--end::کارت footer-->
+        </div>
+        <!--end::Messenger-->
+    </div>
+    <!--end::کشوs-->
+    <!--begin::Scrolltop-->
+    <div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
+        <i class="ki-duotone ki-arrow-up">
+            <span class="path1"></span>
+            <span class="path2"></span>
+        </i>
+    </div>
+    <!--end::Scrolltop-->
+    <!--begin::Modals-->
+    <div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-xl">
+            <!--begin::Modal content-->
+            <div class="modal-content rounded">
+                <!--begin::Modal header-->
+                <div class="modal-header justify-content-end border-0 pb-0">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
+                    <!--begin::Heading-->
+                    <div class="mb-13 text-center">
+                        <h1 class="mb-3">یک برنامه را ارتقا کنید</h1>
+                        <div class="text-muted fw-semibold fs-5">اگر به اطلاعات لازم دارید ، لطفاً بررسی کنید
+                            <a href="#" class="link-primary fw-bold">دستورالعمل قیمت گذاری</a>.
+                        </div>
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::برنامه ریزی ها-->
+                    <div class="d-flex flex-column">
+                        <!--begin::Nav group-->
+                        <div class="nav-group nav-group-outline mx-auto" data-kt-buttons="true">
+                            <button class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3 me-2 active"
+                                    data-kt-plan="month">ماهانه
+                            </button>
+                            <button class="btn btn-color-gray-400 btn-active btn-active-secondary px-6 py-3"
+                                    data-kt-plan="annual">سالانه
+                            </button>
+                        </div>
+                        <!--end::Nav group-->
+                        <!--begin::Row-->
+                        <div class="row mt-10">
+                            <!--begin::Col-->
+                            <div class="col-lg-6 mb-10 mb-lg-0">
+                                <!--begin::Tabs-->
+                                <div class="nav flex-column">
+                                    <!--begin::Tab link-->
+                                    <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 active mb-6"
+                                           data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_startup">
+                                        <!--end::توضیحات-->
+                                        <div class="d-flex align-items-center me-2">
+                                            <!--begin::رادیو-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                                <input class="form-check-input" type="radio" name="plan"
+                                                       checked="checked" value="startup"/>
+                                            </div>
+                                            <!--end::رادیو-->
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">استارت
+                                                    آپ
+                                                </div>
+                                                <div class="fw-semibold opacity-75">برای استارت آپ ها</div>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                        <!--end::توضیحات-->
+                                        <!--begin::قیمت-->
+                                        <div class="ms-5">
+                                            <span class="mb-2">$</span>
+                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="39"
+                                                  data-kt-plan-price-annual="399">39</span>
+                                            <span class="fs-7 opacity-50">/
+												<span data-kt-element="period">دوشنبه</span></span>
+                                        </div>
+                                        <!--end::قیمت-->
+                                    </label>
+                                    <!--end::Tab link-->
+                                    <!--begin::Tab link-->
+                                    <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                           data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_advanced">
+                                        <!--end::توضیحات-->
+                                        <div class="d-flex align-items-center me-2">
+                                            <!--begin::رادیو-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                                <input class="form-check-input" type="radio" name="plan"
+                                                       value="advanced"/>
+                                            </div>
+                                            <!--end::رادیو-->
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">پیشرفته
+                                                </div>
+                                                <div class="fw-semibold opacity-75">برتر برای 100+ تیم اندازه</div>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                        <!--end::توضیحات-->
+                                        <!--begin::قیمت-->
+                                        <div class="ms-5">
+                                            <span class="mb-2">$</span>
+                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="339"
+                                                  data-kt-plan-price-annual="3399">339</span>
+                                            <span class="fs-7 opacity-50">/
+												<span data-kt-element="period">دوشنبه</span></span>
+                                        </div>
+                                        <!--end::قیمت-->
+                                    </label>
+                                    <!--end::Tab link-->
+                                    <!--begin::Tab link-->
+                                    <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                           data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_enterprise">
+                                        <!--end::توضیحات-->
+                                        <div class="d-flex align-items-center me-2">
+                                            <!--begin::رادیو-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                                <input class="form-check-input" type="radio" name="plan"
+                                                       value="enterprise"/>
+                                            </div>
+                                            <!--end::رادیو-->
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">شرکت،
+                                                    پروژه
+                                                    <span class="badge badge-light-success ms-2 py-2 px-3 fs-7">محبوب</span>
+                                                </div>
+                                                <div class="fw-semibold opacity-75">مقدار برتر برای 1000+ تیم</div>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                        <!--end::توضیحات-->
+                                        <!--begin::قیمت-->
+                                        <div class="ms-5">
+                                            <span class="mb-2">$</span>
+                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="999"
+                                                  data-kt-plan-price-annual="9999">999</span>
+                                            <span class="fs-7 opacity-50">/
+												<span data-kt-element="period">دوشنبه</span></span>
+                                        </div>
+                                        <!--end::قیمت-->
+                                    </label>
+                                    <!--end::Tab link-->
+                                    <!--begin::Tab link-->
+                                    <label class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
+                                           data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_custom">
+                                        <!--end::توضیحات-->
+                                        <div class="d-flex align-items-center me-2">
+                                            <!--begin::رادیو-->
+                                            <div class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
+                                                <input class="form-check-input" type="radio" name="plan"
+                                                       value="custom"/>
+                                            </div>
+                                            <!--end::رادیو-->
+                                            <!--begin::Info-->
+                                            <div class="flex-grow-1">
+                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">سفارشی
+                                                </div>
+                                                <div class="fw-semibold opacity-75">دوباره مجوز سفارشی را دوباره تهیه
+                                                    کنید
+                                                </div>
+                                            </div>
+                                            <!--end::Info-->
+                                        </div>
+                                        <!--end::توضیحات-->
+                                        <!--begin::قیمت-->
+                                        <div class="ms-5">
+                                            <a href="#" class="btn btn-sm btn-success">تماس با ما</a>
+                                        </div>
+                                        <!--end::قیمت-->
+                                    </label>
+                                    <!--end::Tab link-->
+                                </div>
+                                <!--end::Tabs-->
+                            </div>
+                            <!--end::Col-->
+                            <!--begin::Col-->
+                            <div class="col-lg-6">
+                                <!--begin::Tab content-->
+                                <div class="tab-content rounded h-100 bg-light p-10">
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane fade show active" id="kt_upgrade_plan_startup">
+                                        <!--begin::Heading-->
+                                        <div class="pb-5">
+                                            <h2 class="fw-bold text-dark">برنامه ی استارت اپ شما چیست؟?</h2>
+                                            <div class="text-muted fw-semibold">بهینه برای اندازه 10+ تیم استارت آپ
+                                            </div>
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--begin::Body-->
+                                        <div class="pt-1">
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">فعال ترین کاربران</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">حداکثر 30 ادغام پروژه</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول تجزیه و تحلیل</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">ماژول دارایی ، مالیه ، سرمایه گذاری</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">ماژول حسابداری</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">بستر شبکه</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">فضای نامحدود ابر</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Tab Pane-->
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane fade" id="kt_upgrade_plan_advanced">
+                                        <!--begin::Heading-->
+                                        <div class="pb-5">
+                                            <h2 class="fw-bold text-dark">برنامه ی استارت اپ شما چیست؟?</h2>
+                                            <div class="text-muted fw-semibold">بهینه برای اندازه 100+ تیم کمپانی</div>
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--begin::Body-->
+                                        <div class="pt-1">
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">فعال ترین کاربران</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">حداکثر 30 ادغام پروژه</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول تجزیه و تحلیل</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول دارایی ، مالیه ، سرمایه گذاری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول حسابداری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">بستر شبکه</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center">
+                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">فضای نامحدود ابر</span>
+                                                <i class="ki-duotone ki-cross-circle fs-1">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Tab Pane-->
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane fade" id="kt_upgrade_plan_enterprise">
+                                        <!--begin::Heading-->
+                                        <div class="pb-5">
+                                            <h2 class="fw-bold text-dark">برنامه ی استارت اپ شما چیست؟?</h2>
+                                            <div class="text-muted fw-semibold">بهینه برای 1000+ تیم سازمانی</div>
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--begin::Body-->
+                                        <div class="pt-1">
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">فعال ترین کاربران</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">حداکثر 30 ادغام پروژه</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول تجزیه و تحلیل</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول دارایی ، مالیه ، سرمایه گذاری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول حسابداری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">بستر شبکه</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">فضای نامحدود ابر</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Tab Pane-->
+                                    <!--begin::Tab Pane-->
+                                    <div class="tab-pane fade" id="kt_upgrade_plan_custom">
+                                        <!--begin::Heading-->
+                                        <div class="pb-5">
+                                            <h2 class="fw-bold text-dark">برنامه ی استارت اپ شما چیست؟?</h2>
+                                            <div class="text-muted fw-semibold">Optimal for corporations</div>
+                                        </div>
+                                        <!--end::Heading-->
+                                        <!--begin::Body-->
+                                        <div class="pt-1">
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">نامحدود کاربران</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">نامحدود پروژه Integrations</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول تجزیه و تحلیل</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول دارایی ، مالیه ، سرمایه گذاری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">ماژول حسابداری</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center mb-7">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">بستر شبکه</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                            <!--begin::آیتم-->
+                                            <div class="d-flex align-items-center">
+                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">فضای نامحدود ابر</span>
+                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                </i>
+                                            </div>
+                                            <!--end::آیتم-->
+                                        </div>
+                                        <!--end::Body-->
+                                    </div>
+                                    <!--end::Tab Pane-->
+                                </div>
+                                <!--end::Tab content-->
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::برنامه ریزی ها-->
+                    <!--begin::Actions-->
+                    <div class="d-flex flex-center flex-row-fluid pt-12">
+                        <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">انصراف</button>
+                        <button type="submit" class="btn btn-primary" id="kt_modal_upgrade_plan_btn">
+                            <!--begin::Indicator label-->
+                            <span class="indicator-label">ارتقا طرح</span>
+                            <!--end::Indicator label-->
+                            <!--begin::Indicator progress-->
+                            <span class="indicator-progress">لطفا صبر کنید...
+								<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                            <!--end::Indicator progress-->
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modals-->
+{% else %}
+    <div class="row align-items-center">
         <div class="col-lg-12 col-md-12 col-sm-12">
-          <div class="dashboard_container">
-            <div class="dashboard_container_body p-4">
-              <div class="viewer_detail_wraps">
-                <div class="viewer_detail_thumb"></div>
-                <div class="caption">
-                  <div class="viewer_header">
-                    <h4>لطفا برای مشاهده داشبورد لاگین کنید</h4>
-                    <span class="viewer_location">
-                      <a class="btn btn-primary" href="{% url 'login' %}" style="padding: 10px 20px; margin: 8px;font-size: 16px; border-radius: 5px;">
+            <div class="dashboard_container">
+                <div class="dashboard_container_body p-4">
+                    <div class="viewer_detail_wraps">
+                        <div class="viewer_detail_thumb"></div>
+                        <div class="caption">
+                            <div class="viewer_header">
+                                <h4>لطفا برای مشاهده داشبورد لاگین کنید</h4>
+                                <span class="viewer_location">
+                      <a class="btn btn-primary" href="{% url 'login' %}"
+                         style="padding: 10px 20px; margin: 8px;font-size: 16px; border-radius: 5px;">
                         ورود
                       </a>
                     </span>
-                  </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      {% endif %}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endif %}
 
-    <!-- Loading static files directly -->
-    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}" />
-    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<!--begin::Javascript-->
 
-    <script src="{% static 'js/angular.min.js' %}"></script>
-    <script src="{% static 'vendor/global/global.min.js' %}"></script>
-    <script src="{% static 'vendor/chart.js/Chart.bundle.min.js' %}"></script>
-    <script src="{% static 'vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'vendor/apexchart/apexchart.js' %}"></script>
-    <script src="{% static 'vendor/owl-carousel/owl.carousel.js' %}"></script>
-    <script src="{% static 'js/dashboard/dashboard-1.js' %}"></script>
-    <script src="{% static 'js/custom.min.js' %}"></script>
-    <script src="{% static 'js/deznav-init.js' %}"></script>
-    <script src="{% static 'js/kamadatepicker.min.js' %}"></script>
+<script>var hostUrl = "assets/";</script>
 
-    <script>
-      var app = angular.module('myApp', [])
-      app.config(function ($interpolateProvider, $httpProvider) {
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}"/>
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<script src="{% static 'js/kamadatepicker.min.js' %}"></script>
+
+
+<!--begin::Global Javascript Bundle(mوatory for all pages)-->
+<script src="{% static 'plugins/global/plugins.bundle.js' %}"></script>
+<script src="{% static 'js/scripts.bundle.js' %}"></script>
+<script src="{% static 'js/angular.min.js' %}"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Vendors Javascript(used for this page only)-->
+<script src="{% static 'plugins/custom/fullcalendar/fullcalendar.bundle.js' %}"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js"></script>
+<script src="{% static 'plugins/custom/datatables/datatables.bundle.js' %}"></script>
+<!--end::Vendors Javascript-->
+<!--begin::سفارشی Javascript(used for this page only)-->
+<script src="{% static 'js/widgets.bundle.js' %}"></script>
+<script src="{% static 'js/custom/widgets.js' %}"></script>
+<script src="{% static 'js/custom/apps/chat/chat.js' %}"></script>
+<script src="{% static 'js/custom/utilities/modals/upgrade-plan.js' %}"></script>
+<script src="{% static 'js/custom/utilities/modals/create-app.js' %}"></script>
+<script src="{% static 'js/custom/utilities/modals/new-target.js' %}"></script>
+<script src="{% static 'js/custom/utilities/modals/users-search.js' %}"></script>
+
+<script>
+    var app = angular.module('myApp', [])
+    app.config(function ($interpolateProvider, $httpProvider) {
         $interpolateProvider.startSymbol('[[')
         $interpolateProvider.endSymbol(']]')
-      
+
         $httpProvider.defaults.xsrfCookieName = 'csrftoken'
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
-      })
-    </script>
+    })
+</script>
 
-  {% block js %}
-
-  {% endblock %}
-
-  </body>
+<!--end::سفارشی Javascript-->
+<!--end::Javascript-->
+</body>
+<!--end::Body-->
 </html>
+

@@ -1,126 +1,239 @@
-{% extends 'admin/_Main.html' %}
-{% block content %}
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">نفرات برتر امتحانی</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-responsive-md">
-            <thead>
-              <tr>
-                <th style="width: 50px">
-                  <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                    <input type="checkbox" class="form-check-input" id="checkAll" required="" /><label class="form-check-label" for="checkAll"></label>
-                  </div>
-                </th>
-                <th>
-                  <strong>رول شماره</strong>
-                </th>
-                <th>
-                  <strong>نام</strong>
-                </th>
-                <th>
-                  <strong>پست الکترونیک</strong>
-                </th>
-                <th>
-                  <strong>تاریخ</strong>
-                </th>
-                <th>
-                  <strong>وضعیت</strong>
-                </th>
-                <th>
-                  <strong></strong>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                    <input type="checkbox" class="form-check-input" id="customCheckBox2" required="" /><label class="form-check-label" for="customCheckBox2"></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img src="images/avatar/1.jpg" class="rounded-lg me-2" width="24" alt="" /><span class="w-space-no">دکتر. جکسون</span>
-                  </div>
-                </td>
-                <td>example@example.com</td>
-                <td>01 اوت 2020</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <i class="fa fa-circle text-success me-1"></i>موفقیت آمیز
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex">
-                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                    <input type="checkbox" class="form-check-input" id="customCheckBox3" required="" /><label class="form-check-label" for="customCheckBox3"></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img src="images/avatar/2.jpg" class="rounded-lg me-2" width="24" alt="" /><span class="w-space-no">دکتر. جکسون</span>
-                  </div>
-                </td>
-                <td>example@example.com</td>
-                <td>01 اوت 2020</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <i class="fa fa-circle text-danger me-1"></i>لغو شد
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex">
-                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="form-check custom-checkbox checkbox-success check-lg me-3">
-                    <input type="checkbox" class="form-check-input" id="customCheckBox4" required="" /><label class="form-check-label" for="customCheckBox4"></label>
-                  </div>
-                </td>
-                <td>
-                  <strong>542</strong>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <img src="images/avatar/3.jpg" class="rounded-lg me-2" width="24" alt="" /><span class="w-space-no">دکتر. جکسون</span>
-                  </div>
-                </td>
-                <td>example@example.com</td>
-                <td>01 اوت 2020</td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <i class="fa fa-circle text-warning me-1"></i>انتظار
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex">
-                    <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+{% load static %}
+
+<!DOCTYPE html>
+<html dir="rtl" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <meta name="robots" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Boltz : Crypto Admin Template" />
+    <meta property="og:title" content="Boltz : Crypto Admin Template" />
+    <meta property="og:description" content="Boltz : Crypto Admin Template" />
+    <meta property="og:image" content="https://boltz.dexignzone.com/xhtml/social-image.png" />
+    <meta name="format-detection" content="telephone=no" />
+    <title>
+      {% block title %}
+        مدیریت داروخانه
+      {% endblock %}
+    </title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <link href="{% static 'vendor/owl-carousel/owl.carousel.css' %}" rel="stylesheet" />
+    <link href="{% static 'vendor/jquery-nice-select/css/nice-select.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/kamadatepicker.min.css' %}" rel="stylesheet" />
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+    <div id="preloader">
+      <div class="loader">
+        <span>مدیریت</span><span>داروخانه</span>
       </div>
     </div>
-  </div>
-{% endblock %}
+    <div id="main-wrapper">
+
+      {% if user.is_authenticated %}
+
+
+      {% include '../inc/Navbar.html' %}
+      {% include '../inc/Sidebar.html' %}
+
+      <div class="content-body">
+        <div class="container-fluid">
+          {% block messages %}
+            <style>
+              .alert {
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+              }
+              
+              .alert-success {
+                background-color: #d4edda;
+                color: #155724;
+              }
+              
+              .alert-error {
+                background-color: #f8d7da;
+                color: #721c24;
+              }
+              
+              .alert-warning {
+                background-color: #fff3cd;
+                color: #856404;
+              }
+              
+              .alert-info {
+                background-color: #d1ecf1;
+                color: #0c5460;
+              }
+            </style>
+
+            {% if messages %}
+            <div class="notifications">
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+          {% endblock %}
+
+          {% block content %}
+
+          {% endblock %}
+        </div>
+      </div>
+
+      {% include '../inc/Footer.html' %}
+      {% else %}
+      <div class="row align-items-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="dashboard_container">
+            <div class="dashboard_container_body p-4">
+              <div class="viewer_detail_wraps">
+                <div class="viewer_detail_thumb"></div>
+                <div class="caption">
+                  <div class="viewer_header">
+                    <h4>لطفا برای مشاهده داشبورد لاگین کنید</h4>
+                    <span class="viewer_location">
+                      <a class="btn btn-primary" href="{% url 'login' %}" style="padding: 10px 20px; margin: 8px;font-size: 16px; border-radius: 5px;">
+                        ورود
+                      </a>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Loading static files directly -->
+    <link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}" />
+    <script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+
+    <script src="{% static 'js/angular.min.js' %}"></script>
+    <script src="{% static 'vendor/global/global.min.js' %}"></script>
+    <script src="{% static 'vendor/chart.js/Chart.bundle.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery-nice-select/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'vendor/apexchart/apexchart.js' %}"></script>
+    <script src="{% static 'vendor/owl-carousel/owl.carousel.js' %}"></script>
+    <script src="{% static 'js/dashboard/dashboard-1.js' %}"></script>
+    <script src="{% static 'js/custom.min.js' %}"></script>
+    <script src="{% static 'js/deznav-init.js' %}"></script>
+    <script src="{% static 'js/kamadatepicker.min.js' %}"></script>
+
+    <script>
+      var app = angular.module('myApp', [])
+      app.config(function ($interpolateProvider, $httpProvider) {
+        $interpolateProvider.startSymbol('[[')
+        $interpolateProvider.endSymbol(']]')
+      
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken'
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken'
+      })
+    </script>
+
+  {% block js %}
+
+  {% endblock %}
+
+  </body>
+</html>
+
+
+					<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+						<!--begin::Content wrapper-->
+						<div class="d-flex flex-column flex-column-fluid">
+							<!--begin::Toolbar-->
+							<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+								<!--begin::Toolbar container-->
+								<div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+									<!--begin::Page title-->
+									<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+										<!--begin::Title-->
+										<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">چند منظوره</h1>
+										<!--end::Title-->
+										<!--begin::Breadcrumb-->
+										<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+											<!--begin::آیتم-->
+											<li class="breadcrumb-item text-muted">
+												<a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">خانه</a>
+											</li>
+											<!--end::آیتم-->
+											<!--begin::آیتم-->
+											<li class="breadcrumb-item">
+												<span class="bullet bg-gray-400 w-5px h-2px"></span>
+											</li>
+											<!--end::آیتم-->
+											<!--begin::آیتم-->
+											<li class="breadcrumb-item text-muted">داشبورد ها</li>
+											<!--end::آیتم-->
+										</ul>
+										<!--end::Breadcrumb-->
+									</div>
+									<!--end::Page title-->
+									<!--begin::Actions-->
+									<div class="d-flex align-items-center gap-2 gap-lg-3">
+										<!--begin::Secondary button-->
+										<a href="#" class="btn btn-sm fw-bold bg-body btn-color-gray-700 btn-active-color-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">رولور</a>
+										<!--end::Secondary button-->
+										<!--begin::اصلی button-->
+										<a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">افزودن</a>
+										<!--end::اصلی button-->
+									</div>
+									<!--end::Actions-->
+								</div>
+								<!--end::Toolbar container-->
+							</div>
+							<!--end::Toolbar-->
+							<!--begin::Content-->
+							<div id="kt_app_content" class="app-content flex-column-fluid">
+								<!--begin::Content container-->
+								<div id="kt_app_content_container" class="app-container container-fluid">
+									<!--begin::Row-->
+
+									<!--end::Row-->
+								</div>
+								<!--end::Content container-->
+							</div>
+							<!--end::Content-->
+						</div>
+						<!--end::Content wrapper-->
+						<!--begin::Footer-->
+						<div id="kt_app_footer" class="app-footer">
+							<!--begin::Footer container-->
+							<div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+								<!--begin::Copyright-->
+								<div class="text-dark order-2 order-md-1">
+									<span class="text-muted fw-semibold me-1">2023&copy;</span>
+									<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">ساتراس وب</a>
+								</div>
+								<!--end::Copyright-->
+								<!--begin::Menu-->
+								<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+									<li class="menu-item">
+										<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">درباره ی ما</a>
+									</li>
+									<li class="menu-item">
+										<a href="https://rtl-theme.com" target="_blank" class="menu-link px-2">پشتیبانی</a>
+									</li>
+									<li class="menu-item">
+										<a href="https://www.rtl-theme.com/metronic-admin-html-template/" target="_blank" class="menu-link px-2">خرید</a>
+									</li>
+								</ul>
+								<!--end::Menu-->
+							</div>
+							<!--end::Footer container-->
+						</div>
+						<!--end::Footer-->
+					</div>

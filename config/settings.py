@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-p64rnm$689!3n=tq$oqy9a1fe$mmkt^1xg^@b@kc42$p*_0=23
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
 
 
 # Application definition
@@ -43,11 +43,14 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_bootstrap5',
     'django_celery_beat',
+    'rest_framework',
     'jalali_date',
     'django_jalali',
+    'channels',
 
     'users',
     'acl',
+    'chats',
     'accounts',
     'dashboard',
     'insurances',
@@ -161,29 +164,11 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'UTC'
 
 
-# Jalali
-JALALI_DATE_DEFAULTS = {
-    # if change it to true then all dates of the list_display will convert to the Jalali.
-    'LIST_DISPLAY_AUTO_CONVERT': False,
-    'Strftime': {
-        'date': '%y/%m/%d',
-        'datetime': '%H:%M:%S _ %y/%m/%d',
-    },
-    'Static': {
-        'js': [
-            # loading datepicker
-            'admin/js/django_jalali.min.js',
-            # OR
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.core.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/calendar.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc.js',
-            # 'admin/jquery.ui.datepicker.jalali/scripts/jquery.ui.datepicker-cc-fa.js',
-            # 'admin/js/main.js',
-        ],
-        'css': {
-            'all': [
-                'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css',
-            ]
-        }
+ASGI_APPLICATION = 'config.asgi.application'
+
+# Channels
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
 }

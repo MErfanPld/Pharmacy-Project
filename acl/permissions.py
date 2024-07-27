@@ -166,7 +166,20 @@ def filter_permissions(permissions, codes):
 ######################################################################
 
 
+CHATS_PERMISSIONS = {
+    'title': 'دسترسی پیام',
+    'permissions': [
+        {'name': 'لیست پیام', 'code': 'chats_list', 'description': 'دسترسی لیست پیام'},
+        {'name': 'افزودن پیام', 'code': 'chats_create',
+         'description': 'دسترسی ساخت پیام جدید'},
+        {'name': 'ویرایش پیام', 'code': 'chats_edit', 'description': 'دسترسی ویرایش پیام'},
+        {'name': 'حذف پیام', 'code': 'chats_delete', 'description': 'دسترسی حذف پیام'},
+    ]
+}
+PERMISSIONS.append(CHATS_PERMISSIONS)
+
 class ROLE_CODES:
-    LAB_ADMIN = "lab_admin"
+    DRUG_ADMIN = "drug_admin"
     STAFF = "staff"
     DOCTOR = "doctor"
+    USER_DRUG = "user_drug"

@@ -56,7 +56,7 @@ class UserForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'national_id', 'phoneNumber', 'email', 'father_name', 'marital_status',
+        fields = ['first_name', 'last_name', 'national_id', 'phoneNumber','father_name', 'marital_status',
                   'address', 'image', 'password', 'is_superuser']
 
     def __init__(self, *args, **kwargs):

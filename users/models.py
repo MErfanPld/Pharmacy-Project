@@ -23,7 +23,7 @@ from django.utils.text import slugify
 
 def upload_image(instance, filename):
     path = 'uploads/' + 'users/' + \
-           slugify(instance.email, allow_unicode=True)
+           slugify(instance.national_id, allow_unicode=True)
     name = str(time.time()) + '-' + str(instance.username) + '-' + filename
     return path + '/' + name
 
@@ -39,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     phoneNumber = models.CharField(verbose_name="شماره موبایل", max_length=11, unique=True, validators=[mobile_regex],
                                    null=True, )
-    email = models.EmailField(('ایمیل'), unique=True)
+    # email = models.EmailField(('ایمیل'), unique=True)
     national_id = models.CharField(
         unique=True,
         max_length=10,
@@ -47,7 +47,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name="کد ملی",
         validators=[national_id_regex],
     )
-
+    user_drug_profile = models.CharField(max_length=255, null=True, blank=True)  # مثال برای فیلد جدید
     father_name = models.CharField(
         null=True,
         blank=True,

@@ -7,7 +7,7 @@ from users.models import User
 # Create your views here.
 
 def DashboardView(request):
-    return render(request, "./admin/home.html", {})
+    return render(request, "dashboard/dashboard.html", {})
 
 
 # class DashboardView(View):

@@ -1,103 +1,242 @@
 {% load static %} {% load acl_tags %}
 
-<div class="deznav">
-  <div class="deznav-scroll">
-    <div class="dropdown header-profile">
-      <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-        <img src="{% static 'images/profile/pic1.jpg' %}" width="20" alt="" />
-        <div class="header-info">
-          <span class="font-w400 mb-0"> {{ request.user.first_name }} {{ request.user.last_name}}</b></span><small class="text-end font-w400">{{ request.user.phoneNumber }}</small>
+<div class="app-sidebar-menu overflow-hidden flex-column-fluid">
+    <!--begin::Menu wrapper-->
+    <div id="kt_app_sidebar_menu_wrapper" class="app-sidebar-wrapper hover-scroll-overlay-y my-5" data-kt-scroll="true"
+         data-kt-scroll-activate="true" data-kt-scroll-height="auto"
+         data-kt-scroll-dependencies="#kt_app_sidebar_logo, #kt_app_sidebar_footer"
+         data-kt-scroll-wrappers="#kt_app_sidebar_menu" data-kt-scroll-offset="5px" data-kt-scroll-save-state="true">
+        <!--begin::Menu-->
+        <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true"
+             data-kt-menu-expو="false">
+            <!--begin:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
+                <!--begin:Menu link-->
+                <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-element-11 fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+													<span class="path3"></span>
+													<span class="path4"></span>
+												</i>
+											</span>
+											<span class="menu-title">داشبورد</span>
+										</span>
+                <!--end:Menu link-->
+            </div>
+
+            {% if request.user|has_perm:'user_list,user_create,user_edit,user_delete' %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-user fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت کاربران</span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'users-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست کاربران</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'users-create' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">افزودن کاربر</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!--end:Menu sub-->
+                </div>
+            {% endif %}
+
+            {% if request.user|has_perm:'user_permissions_list,user_permissions_create,user_permissions_edit,user_permissions_delete' %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-switch fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت دسترسی </span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'permission-user-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست دسترسی ها</span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'permission-user-create' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">افزودن دسترسی</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            {% endif %}
+
+            {% if request.user|has_perm:'category_drug_list,category_drug_create,category_drug_edit,category_drug_delete' %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-abstract-26 fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت دسته بندی </span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'category-drug-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست دسته بندی </span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'category-drug-create' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">افزودن دسته بندی</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-basket-ok fs-2">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت سفارش ها </span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'order-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست سفارش ها </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            {% if request.user|has_perm:'drugs_list,drugs_create,drugs_edit,drugs_delete' %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-capsule">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت داروها </span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'drug-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست داروها </span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'drug-create' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">افزودن دارو</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--end:Menu sub-->
+                </div>
+            {% endif %}
+
+            {% if request.user|has_perm:'insurances_list,insurances_create,insurances_edit,insurances_delete' %}
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion hover show">
+                    <!--begin:Menu link-->
+                    <span class="menu-link">
+											<span class="menu-icon">
+												<i class="ki-duotone ki-bank">
+													<span class="path1"></span>
+													<span class="path2"></span>
+												</i>
+											</span>
+											<span class="menu-title">مدیریت بیمه ها </span>
+											<span class="menu-arrow"></span>
+										</span>
+                    <!--end:Menu link-->
+                    <!--begin:Menu sub-->
+                    <div class="menu-sub menu-sub-accordion menu-active-bg show" kt-hidden-height="81" style="">
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'insurance-list' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">لیست بیمه ها </span>
+                            </a>
+                        </div>
+                        <div class="menu-item">
+                            <a class="menu-link" href="{% url 'insurance-create' %}">
+													<span class="menu-bullet">
+														<span class="bullet bullet-dot"></span>
+													</span>
+                                <span class="menu-title">افزودن بیمه</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!--end:Menu sub-->
+                </div>
+            {% endif %}
+
         </div>
-      </a>
     </div>
-    <ul class="metismenu mm-show" id="menu">
-      <li><a href="{% url 'dashboard' %}" class="ai-icon" aria-expanded="false"><i class="fa fa-dashboard"></i><span class="nav-text">داشبورد</span></a></li>
-      {% if request.user|has_perm:'user_list,user_create,user_edit,user_delete' %}
-      <li>
-        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-user"></i><span class="nav-text">مدیریت کاربران</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
-          <li>
-            <a href="{% url 'users-list' %}">لیست کاربران</a>
-          </li>
-          <li>
-            <a href="{% url 'users-create' %}">افزودن کاربر </a>
-          </li>
-        </ul>
-      </li>
-      {% endif %}
-
-      {% if request.user|has_perm:'user_permissions_list,user_permissions_create,user_permissions_edit,user_permissions_delete' %}
-      <li>
-        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-lock"></i><span class="nav-text">مدیریت دسترسی </span></a><ul aria-expanded="false" class="mm-collapse mm-show">
-          <li>
-            <a href="{% url 'permission-user-list' %}">لیست دسترسی ها </a>
-          </li>
-          <li>
-            <a href="{% url 'permission-user-create' %}">افزودن دسترسی </a>
-          </li>
-        </ul>
-      </li>
-      {% endif %}
-
-      {% if request.user|has_perm:'category_drug_list,category_drug_create,category_drug_edit,category_drug_delete' %}
-      <li>
-        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-list-alt"></i><span class="nav-text">مدیریت دسته بندی </span></a><ul aria-expanded="false" class="mm-collapse mm-show">
-          <li>
-            <a href="{% url 'category-drug-list' %}">لیست دسته بندی </a>
-          </li>
-          <li>
-            <a href="{% url 'category-drug-create' %}">افزودن دسته بندی </a>
-          </li>
-        </ul>
-      </li>
-      {% endif %}
-
-      {% if request.user|has_perm:'drugs_list,drugs_create,drugs_edit,drugs_delete' %}
-      <li>
-        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-stethoscope"></i><span class="nav-text">مدیریت دارو ها</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
-          <li>
-            <a href="{% url 'drug-list' %}">لیست دارو ها</a>
-          </li>
-          <li>
-            <a href="{% url 'drug-create' %}">افزودن دارو </a>
-        </ul>
-      </li>
-      {% endif %}
-
-      {% if request.user|has_perm:'insurances_list,insurances_create,insurances_edit,insurances_delete' %}
-      <li>
-        <a class="has-arrow ai-icon" aria-expanded="false"><i class="fa fa-medkit"></i><span class="nav-text">مدیریت بیمه ها</span></a><ul aria-expanded="false" class="mm-collapse mm-show">
-          <li>
-            <a href="{% url 'insurance-list' %}">لیست بیمه ها</a>
-          </li>
-          <li>
-            <a href="{% url 'insurance-create' %}">افزودن بیمه </a>
-          </li>
-        </ul>
-      </li>
-      {% endif %}
-
-
-      <li><a href="{% url 'order-list' %}" class="ai-icon" aria-expanded="false"><i class="fa fa-shopping-basket"></i><span class="nav-text">مدیریت سفارش ها</span></a></li>
-
-
-      <li>
-        <a href="{% url 'logout' %}" class="ai-icon" aria-expanded="false">
-          {% comment %} <i class="fa fa-dashboard"></i> {% endcomment %}
-          <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <span class="nav-text">خروج</span>
-          </form>
-          </a>
-      </li>
-
-    </ul>
-    <div class="copyright">
-      <p>
-        <strong>داشبورد مدیریت رمزارز Boltz</strong>© 2021 All Rights Reserved
-      </p>
-      <p class="fs-12">
-        ساخته شده با<span class="heart"></span>توسط DexignZone
-      </p>
-    </div>
-  </div>
 </div>
