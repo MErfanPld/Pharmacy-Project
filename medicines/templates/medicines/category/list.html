@@ -1,38 +1,87 @@
 {% extends 'admin/_Main.html' %}
+{% block title %} لیست دسته بندی  {% endblock %}
+
 {% block content %}
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">لیست دسته بندی ها</h4>
-      </div>
-      <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-hover table-responsive-sm">
-            <thead>
-              <tr>
-                <th scope="col">شناسه</th>
-                <th scope="col">نام </th>
-                <th scope="col">وضعیت</th>
-                <th scope="col">عملیات</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in object_list %}
-                <tr>
-                  <th scope="row">{{ item.id }}</th>
-                  <td>{{ item.name|default:'---' }}</td>
-                  <td>{{ item.get_status|default:'---' }}</td>
-                  <td>
-                    <div class="d-flex">
-                      <a href="{% url 'category-drug-update' item.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a><a href="{% url 'category-drug-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                    </div>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+
+    <div class="card mb-5 mb-xl-8">
+        <!--begin::Header-->
+        <div class="card-header border-0 pt-5">
+            <h3 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bold fs-3 mb-1">لیست دسته بندی </span>
+            </h3>
+            <div class="card-toolbar">
+                <a href="{% url 'category-drug-create' %}" class="btn btn-sm btn-light-primary">
+                    <i class="ki-duotone ki-plus fs-2"></i>افزودن</a>
+            </div>
         </div>
-      </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body py-3">
+            <!--begin::Table container-->
+            <div class="table-responsive">
+                <!--begin::Table-->
+                <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+                    <!--begin::Table head-->
+                    <thead>
+                    <tr class="fw-bold text-muted bg-light">
+                        <th class="min-w-125px">شناسه</th>
+                        <th class="min-w-200px">نام</th>
+                        <th class="min-w-150px">وضعیت</th>
+                        <th class="min-w-150px">عملیات</th>
+                        <th class="min-w-200px text-end rounded-end"></th>
+                    </tr>
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody>
+                    {% for item in object_list %}
+                        <tr>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.id | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.name | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="badge badge-light-primary fs-7 fw-bold">{{ item.get_status | default:'---' }}</a>
+                            </td>
+                            <td class="text-end">
+                                <a href="{% url 'category-drug-update' item.id %}"
+                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-switch fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </a>
+                                <a href="{% url 'category-drug-update' item.id %}"
+                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-pencil fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </a>
+
+                                <a href="{% url 'category-drug-delete' item.id %}"
+                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-delete-folder fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+                <!--end::Table-->
+            </div>
+            <!--end::Table container-->
+        </div>
+        <!--begin::Body-->
     </div>
-  </div>
+
 {% endblock %}

@@ -1,45 +1,83 @@
 {% extends 'admin/_Main.html' %}
+{% block title %} لیست سفارش ها  {% endblock %}
+
 {% block content %}
-  <div class="col-lg-12">
-    <div class="card">
-      <div class="card-header">
-        <h4 class="card-title">لیست سفارش ها</h4>
-      </div>
-      <div class="card-body">
-        <!-- جدول لیست داروها -->
-        <div class="table-responsive">
-          <table class="table table-hover table-responsive-sm">
-            <thead>
-              <tr>
-                <th scope="col">شناسه</th>
-                <th scope="col">سفارش</th>
-                <th scope="col">نام محصول</th>
-                <th scope="col">تعداد</th>
-                <th scope="col">قیمت</th>
-                <th scope="col">تاریخ</th>
-                <th scope="col">عملیات</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for item in orders %}
-                <tr>
-                  <th scope="row">{{ item.id }}</th>
-                  <td>{{ item.order }}</td>
-                  <td>{{ item.drug.name }}</td>
-                  <td>{{ item.quantity }}</td>
-                  <td>{{ item.price }}</td>
-                  <td>{{ item.jcreated }}</td>
-                  <td>
-                    <div class="d-flex">
-                      <a href="{% url 'order-delete' item.id %}" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                    </div>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+
+    <div class="card mb-5 mb-xl-8">
+        <!--begin::Header-->
+        <div class="card-header border-0 pt-5">
+            <h3 class="card-title align-items-start flex-column">
+                <span class="card-label fw-bold fs-3 mb-1">لیست سفارش ها </span>
+            </h3>
         </div>
-      </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body py-3">
+            <!--begin::Table container-->
+            <div class="table-responsive">
+                <!--begin::Table-->
+                <table class="table table-row-bordered table-row-gray-100 align-middle gs-0 gy-3">
+                    <!--begin::Table head-->
+                    <thead>
+                    <tr class="fw-bold text-muted bg-light">
+                        <th class="min-w-125px">شناسه</th>
+                        <th scope="min-w-150px">سفارش</th>
+                        <th scope="min-w-150px">نام محصول</th>
+                        <th scope="min-w-150px">تعداد</th>
+                        <th scope="min-w-150px">قیمت</th>
+                        <th scope="min-w-150px">تاریخ</th>
+                        <th class="min-w-150px">عملیات</th>
+                        <th class="min-w-200px text-end rounded-end"></th>
+                    </tr>
+                    </thead>
+                    <!--end::Table head-->
+                    <!--begin::Table body-->
+                    <tbody>
+                    {% for item in object_list %}
+                        <tr>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.id | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.order | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.drug.name | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.quantity | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.price | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="#"
+                                   class="text-dark fw-bold text-hover-primary d-block mb-1 fs-6">{{ item.jcreated | default:'---' }}</a>
+                            </td>
+                            <td>
+                                <a href="{% url 'order-delete' item.id %}"
+                                   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                    <i class="ki-duotone ki-delete-folder fs-2">
+                                        <span class="path1"></span>
+                                        <span class="path2"></span>
+                                    </i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <!--end::Table body-->
+                </table>
+                <!--end::Table-->
+            </div>
+            <!--end::Table container-->
+        </div>
+        <!--begin::Body-->
     </div>
-  </div>
+
 {% endblock %}
