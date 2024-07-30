@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'django_bootstrap5',
     'django_celery_beat',
+    'drf_spectacular',
     'rest_framework',
     'jalali_date',
     'django_jalali',
@@ -171,4 +172,15 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
     },
+}
+
+REST_FRAMEWORK = {
+    # YOUR SETTINGS
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# SWAGGER
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Pharmacy API',
+    'VERSION': '1.0.0',
 }

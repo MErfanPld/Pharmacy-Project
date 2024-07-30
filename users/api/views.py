@@ -1,23 +1,38 @@
-from rest_framework.generics import CreateAPIView, ListAPIView
-from rest_framework.pagination import LimitOffsetPagination
-from rest_framework.permissions import AllowAny
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework import filters
+from rest_framework.response import Response
+from acl.rest_mixin import RestPermissionMixin
 from users.models import User
 from users.api.serializers import *
+from .serializers import UserSerializer
 
-class UserView(ListAPIView):
-	queryset = User.objects.all().order_by('first_name')
-	serializer_class = UserSerializer
-	pagination_class = LimitOffsetPagination
+class UserListAPIView(ListAPIView):
+    permission_classes = [RestPermissionMixin]
+    permissions = ['user_list']
+    search_fields = ["title","slug"]
+    filter_backends = [filters.SearchFilter,filters.OrderingFilter]
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-	def get_queryset(self):
-		excludeUsersArr = []
-		try:
-			excludeUsers = self.request.query_params.get('exclude')
-			if excludeUsers:
-				userIds = excludeUsers.split(',')
-				for userId in userIds:
-					excludeUsersArr.append(int(userId))
-		except:
-			return []
-		return super().get_queryset().exclude(id__in=excludeUsersArr)
 
+class UserCreateAPIView(CreateAPIView):
+    permission_classes = [RestPermissionMixin]
+    permissions = ['user_create']
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserUpdateAPIView(UpdateAPIView):
+    permission_classes = [RestPermissionMixin]
+    permissions = ['user_edit']
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDestroyAPIView(DestroyAPIView):
+    permission_classes = [RestPermissionMixin]
+    permissions = ['user_delete']
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
