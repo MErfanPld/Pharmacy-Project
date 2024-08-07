@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'drf_spectacular',
     'rest_framework',
+    'rest_framework_simplejwt',
     'jalali_date',
     'django_jalali',
     'channels',
