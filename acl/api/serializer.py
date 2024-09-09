@@ -23,6 +23,9 @@ class Role_UserSerializer(ModelSerializer):
 
 
 class UserPermissionSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField(read_only=True, source='user.full_name')
+
+    # permissions = PermissionSerializer(read_only=True, source='permissions.name')
     class Meta:
         model = UserPermission
         fields = '__all__'
