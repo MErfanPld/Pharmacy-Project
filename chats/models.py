@@ -1,30 +1,29 @@
-from django.contrib.auth import get_user_model
+# models.py
+from django.conf import settings
 from django.db import models
-from utils.models import CustomModel
-from utils.validator import validate_file_size
 
-User = get_user_model()
+class Ticket(models.Model):
+    STATUS_CHOICES = [
+        ('Open', 'Open'),
+        ('Closed', 'Closed'),
+    ]
 
-
-class ChatMessage(CustomModel):
-    text = models.TextField(verbose_name='متن پیام', max_length=500, null=True,
-        blank=True)
-    sender = models.ForeignKey(verbose_name='فرستنده', to=User, on_delete=models.CASCADE, related_name='sent_messages')
-    receiver = models.ForeignKey(verbose_name='گیرنده', to=User, on_delete=models.CASCADE,
-                                related_name='received_messages')
-    file = models.FileField(
-        verbose_name='فایل پیام',
-        max_length=500, null=True,
-        blank=True, upload_to='chats',
-        validators=[validate_file_size]
-    )
-
-    class Meta:
-        verbose_name = 'چت'
-        verbose_name_plural = 'چت ها'
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    admin = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name='admin_tickets')
+    subject = models.CharField(max_length=200)
+    description = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Open')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.text or '---'
+        return self.subject
 
-    def get_file(self):
-        return self.file.url if self.file else None
+class Message(models.Model):
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.sender.full_name} on {self.created_at}"
