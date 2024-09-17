@@ -16,6 +16,10 @@ class Ticket(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        verbose_name = 'تیکت'
+        verbose_name_plural = 'تیکت ها'
+
     def __str__(self):
         return self.subject
 
@@ -24,6 +28,10 @@ class Message(models.Model):
     sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'پیام'
+        verbose_name_plural = 'پیام ها'
 
     def __str__(self):
         return f"Message from {self.sender.full_name} on {self.created_at}"
