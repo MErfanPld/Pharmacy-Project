@@ -39,10 +39,11 @@ class Drug(models.Model):
     category = models.ForeignKey(
         CategoryDrug, on_delete=models.CASCADE, related_name='drugs', verbose_name="دسته بندی")
     description = models.TextField(blank=True, verbose_name="توضیحات")
+    interactions = models.ManyToManyField(
+        'self', blank=True, symmetrical=False, verbose_name="تداخل‌های دارویی")
     price = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name="قیمت")
     quantity = models.IntegerField(verbose_name="تعداد")
-    threshold = models.IntegerField(default=10)
     manufacturer = models.CharField(max_length=255, verbose_name="تولید کننده")
     expiration_date = models.CharField(verbose_name="تاریخ انقضا", max_length=255)
     status = models.BooleanField(default=False, verbose_name="وضعیت")
@@ -67,4 +68,3 @@ class Drug(models.Model):
 
     def jexpiration_date(self):
         return self.expiration_date.replace('-', '/')
-        # return jalali_converter(self.expiration_date)
