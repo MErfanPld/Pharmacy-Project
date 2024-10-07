@@ -94,3 +94,4 @@ class UserPermissionFilters(filters.FilterSet):
         except:
             pass
         return qs
+

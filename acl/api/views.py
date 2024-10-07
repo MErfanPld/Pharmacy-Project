@@ -1,6 +1,12 @@
+from django.http import JsonResponse
 from django.shortcuts import render
+from requests import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
+from rest_framework.generics import *
+
+from acl.permissions import PERMISSIONS, filter_permissions
 
 from ..models import *
 from .serializer import *
@@ -20,11 +26,15 @@ class PermissionsAPI(ModelViewSet):
     serializer_class = PermissionSerializer
 
 
-class UserPermissionViewSet(ModelViewSet):
+class UserPermissionListCreateView(ListCreateAPIView):
+    permission_classes = [IsAuthenticated]
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer
-    permission_classes = [IsAuthenticated]
 
+class UserPermissionDetailView(RetrieveUpdateDestroyAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = UserPermission.objects.all()
+    serializer_class = UserPermissionSerializer
 
 class UserRoleAPI(ModelViewSet):
     permission_classes = [IsAuthenticated]

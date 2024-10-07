@@ -23,9 +23,28 @@ class Role_UserSerializer(ModelSerializer):
 
 
 class UserPermissionSerializer(serializers.ModelSerializer):
-    user = serializers.StringRelatedField(read_only=True, source='user.full_name')
+    permissions = serializers.PrimaryKeyRelatedField(
+        queryset=Permission.objects.all(), many=True)
+    
+    permissions_display = serializers.SerializerMethodField()
 
-    # permissions = PermissionSerializer(read_only=True, source='permissions.name')
     class Meta:
         model = UserPermission
-        fields = '__all__'
+        fields = ['user', 'permissions', 'permissions_display']
+
+    def get_permissions_display(self, obj):
+        return [perm.name for perm in obj.permissions.all()]
+
+    def create(self, validated_data):
+        permissions_data = validated_data.pop('permissions')
+        user_permission = UserPermission.objects.create(**validated_data)
+        user_permission.permission.set(permissions_data)
+        return user_permission
+
+    def update(self, instance, validated_data):
+        permissions_data = validated_data.pop('permissions', None)
+        instance.user = validated_data.get('user', instance.user)
+        instance.save()
+        if permissions_data is not None:
+            instance.permissions.set(permissions_data)
+        return instance
