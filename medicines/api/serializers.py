@@ -13,3 +13,8 @@ class DrugSerializer(serializers.ModelSerializer):
     class Meta:
         model = Drug
         fields = "__all__"
+        
+    def validate_name(self, value):
+        if Drug.objects.filter(name=value).exists():
+            raise serializers.ValidationError("این دارو قبلاً ثبت شده است.")
+        return value
