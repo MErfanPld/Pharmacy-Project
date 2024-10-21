@@ -45,8 +45,8 @@ urlpatterns += [
     path('api/orders/', include('orders.api.urls')),
     path('api/chats/', include('chats.api.urls')),
     path('api/shelves/', include('shelves.urls')),
+    path('api/cosmetics/', include('cosmetics.urls')),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
