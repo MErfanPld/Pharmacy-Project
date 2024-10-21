@@ -10,6 +10,7 @@ class CategoryDrugSerializer(serializers.ModelSerializer):
 
 class DrugSerializer(serializers.ModelSerializer):
     interactions = serializers.StringRelatedField(many=True, read_only=True)
+    shelf = serializers.StringRelatedField() 
     class Meta:
         model = Drug
         fields = "__all__"

@@ -44,6 +44,7 @@ urlpatterns += [
     # path('api/insurances/', include('insurances.api.urls')),
     path('api/orders/', include('orders.api.urls')),
     path('api/chats/', include('chats.api.urls')),
+    path('api/shelves/', include('shelves.urls')),
 ]
 
 

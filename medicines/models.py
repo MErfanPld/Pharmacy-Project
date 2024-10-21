@@ -1,3 +1,4 @@
+from shelves.models import *
 from django.db import models
 from extenstions.utils import jalali_converter
 from django_jalali.db.models import jDateField
@@ -39,6 +40,7 @@ class Drug(models.Model):
     category = models.ForeignKey(
         CategoryDrug, on_delete=models.CASCADE, related_name='drugs', verbose_name="دسته بندی")
     description = models.TextField(blank=True, verbose_name="توضیحات")
+    shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, related_name='drugs', verbose_name="قفسه")
     interactions = models.ManyToManyField(
         'self', blank=True, symmetrical=False, verbose_name="تداخل‌های دارویی")
     price = models.DecimalField(
