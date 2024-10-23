@@ -1,5 +1,7 @@
 from rest_framework import serializers
 from rest_framework.serializers import ModelSerializer
+from rest_framework.exceptions import ValidationError
+
 from ..models import *
 
 
@@ -25,7 +27,7 @@ class Role_UserSerializer(ModelSerializer):
 class UserPermissionSerializer(serializers.ModelSerializer):
     permissions = serializers.PrimaryKeyRelatedField(
         queryset=Permission.objects.all(), many=True)
-    
+
     permissions_display = serializers.SerializerMethodField()
 
     class Meta:
@@ -36,15 +38,27 @@ class UserPermissionSerializer(serializers.ModelSerializer):
         return [perm.name for perm in obj.permissions.all()]
 
     def create(self, validated_data):
-        permissions_data = validated_data.pop('permissions')
+        permissions_data = validated_data.pop('permissions', None)
+        user = validated_data.get('user')
+        
+        if not User.objects.filter(id=user.id).exists():
+            raise ValidationError("کاربر معتبر نیست.")
+        
         user_permission = UserPermission.objects.create(**validated_data)
-        user_permission.permission.set(permissions_data)
+        if permissions_data is not None:
+            user_permission.permissions.set(permissions_data)  # اصلاح شده
         return user_permission
 
     def update(self, instance, validated_data):
         permissions_data = validated_data.pop('permissions', None)
-        instance.user = validated_data.get('user', instance.user)
+        
+        if 'user' in validated_data:
+            user = validated_data['user']
+            if not User.objects.filter(id=user.id).exists():
+                raise ValidationError("کاربر معتبر نیست.")
+            instance.user = user
+            
         instance.save()
         if permissions_data is not None:
-            instance.permissions.set(permissions_data)
+            instance.permissions.set(permissions_data)  # اصلاح شده
         return instance

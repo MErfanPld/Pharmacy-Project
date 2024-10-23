@@ -10,7 +10,6 @@ class CategoryDrugAdmin(admin.ModelAdmin):
 
 @admin.register(Drug)
 class DrugAdmin(admin.ModelAdmin):
-    list_display = ['name', 'category','price', 'quantity','expiration_date','status', 'jcreated']
+    list_display = ['name', 'category', 'price', 'quantity', 'expiration_date', 'status', 'jcreated']
     search_fields = ('name', 'price', 'status')
-
 

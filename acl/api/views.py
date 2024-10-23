@@ -31,10 +31,18 @@ class UserPermissionListCreateView(ListCreateAPIView):
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer
 
+
 class UserPermissionDetailView(RetrieveUpdateDestroyAPIView):
-    permission_classes = [IsAuthenticated]
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer
+    permission_classes = [IsAuthenticated]
+
+    def retrieve(self, request, *args, **kwargs):
+        try:
+            return super().retrieve(request, *args, **kwargs)
+        except UserPermission.DoesNotExist:
+            return Response({'detail': 'دسترسی کاربر پیدا نشد.'}, status=status.HTTP_404_NOT_FOUND)
+
 
 class UserRoleAPI(ModelViewSet):
     permission_classes = [IsAuthenticated]

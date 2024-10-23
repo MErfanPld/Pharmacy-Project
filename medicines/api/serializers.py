@@ -9,13 +9,18 @@ class CategoryDrugSerializer(serializers.ModelSerializer):
 
 
 class DrugSerializer(serializers.ModelSerializer):
+    total_quantity = serializers.ReadOnlyField()
     interactions = serializers.StringRelatedField(many=True, read_only=True)
-    shelf = serializers.StringRelatedField() 
+    shelf = serializers.StringRelatedField()
+
     class Meta:
         model = Drug
         fields = "__all__"
-        
+
     def validate_name(self, value):
         if Drug.objects.filter(name=value).exists():
             raise serializers.ValidationError("این دارو قبلاً ثبت شده است.")
         return value
+
+    def get_stock_status(self, obj):
+        return obj.check_stock()
