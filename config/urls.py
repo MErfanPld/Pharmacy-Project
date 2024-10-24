@@ -46,6 +46,7 @@ urlpatterns += [
     path('api/chats/', include('chats.api.urls')),
     path('api/shelves/', include('shelves.urls')),
     path('api/cosmetics/', include('cosmetics.urls')),
+    path('api/financial/', include('financial.urls')),
 ]
 
 if settings.DEBUG:
