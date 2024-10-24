@@ -57,9 +57,9 @@ class UserLogoutAPIView(GenericAPIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-class UserAPIView(RetrieveUpdateAPIView):
-    permission_classes = (IsAuthenticated,)
-    serializer_class = serializers.CustomUserSerializer
+# class UserAPIView(RetrieveUpdateAPIView):
+#     permission_classes = (IsAuthenticated,)
+#     serializer_class = serializers.CustomUserSerializer
 
-    def get_object(self):
-        return self.request.user
+#     def get_object(self):
+#         return self.request.user

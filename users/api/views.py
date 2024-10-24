@@ -25,11 +25,9 @@ class UserCreateAPIView(CreateAPIView):
 
 
 class UserUpdateAPIView(UpdateAPIView):
-    permission_classes = [RestPermissionMixin]
-    permissions = ['user_edit']
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
+    permission_classes = [RestPermissionMixin] 
 
 class UserDestroyAPIView(DestroyAPIView):
     permission_classes = [RestPermissionMixin]

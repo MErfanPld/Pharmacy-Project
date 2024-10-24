@@ -9,7 +9,7 @@ class UserManager(BaseUserManager):
             raise ValueError('The given national_id must be set')
 
         user = self.model(national_id=national_id, **extra_fields)
-        user.set_password(password)
+        user.set_password(password)  # هش کردن پسورد
         user.save(using=self._db)
         return user
 
