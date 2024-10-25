@@ -26,7 +26,15 @@ class PermissionsAPI(ModelViewSet):
     serializer_class = PermissionSerializer
 
 
-class UserPermissionListCreateView(ListCreateAPIView):
+class UserPermissionListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserWithPermissionsSerializer
+
+    def get_queryset(self):
+        return User.objects.all()
+
+
+class UserPermissionCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
     queryset = UserPermission.objects.all()
     serializer_class = UserPermissionSerializer

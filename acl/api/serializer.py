@@ -24,6 +24,18 @@ class Role_UserSerializer(ModelSerializer):
         depth = 1
 
 
+class UserWithPermissionsSerializer(serializers.ModelSerializer):
+    permissions = serializers.SerializerMethodField()  # استفاده از SerializerMethodField برای دسترسی به متد
+
+    class Meta:
+        model = User
+        fields = ['id', 'phoneNumber', 'permissions']
+
+    def get_permissions(self, obj):
+        # تمام دسترسی‌های مربوط به کاربر از مدل UserPermission گرفته می‌شود
+        user_permissions = UserPermission.objects.filter(user=obj).values_list('permissions__name', flat=True)
+        return list(user_permissions)
+
 class UserPermissionSerializer(serializers.ModelSerializer):
     permissions = serializers.PrimaryKeyRelatedField(
         queryset=Permission.objects.all(), many=True)
