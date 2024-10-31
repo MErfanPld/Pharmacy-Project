@@ -41,6 +41,8 @@ class Drug(models.Model):
         CategoryDrug, on_delete=models.CASCADE, related_name='drugs', verbose_name="دسته بندی")
     description = models.TextField(blank=True, verbose_name="توضیحات")
     shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, related_name='drugs', verbose_name="قفسه")
+    code_drug = models.CharField(max_length=255,blank=True,null=True ,unique=True,
+                            verbose_name="کد دارو")
     interactions = models.ManyToManyField(
         'self', blank=True, symmetrical=False, verbose_name="تداخل‌های دارویی")
     price = models.DecimalField(

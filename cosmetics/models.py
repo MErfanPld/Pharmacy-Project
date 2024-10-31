@@ -1,3 +1,4 @@
+from shelves.models import *
 from django.db import models
 
 from extenstions.utils import jalali_converter
@@ -17,6 +18,9 @@ class CosmeticItem(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="نام محصول")
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='cosmetics', verbose_name="دسته بندی")
     description = models.TextField(blank=True, verbose_name="توضیحات")
+    shelf = models.ForeignKey(Shelf, blank=True,null=True,on_delete=models.CASCADE, related_name='cosmetics', verbose_name="قفسه")
+    code_item = models.CharField(max_length=255,blank=True,null=True ,unique=True,
+                            verbose_name="کد محصول")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="قیمت")
     quantity = models.IntegerField(verbose_name="تعداد موجود")
     manufacturer = models.CharField(max_length=255, verbose_name="تولید کننده")
