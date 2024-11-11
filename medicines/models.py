@@ -40,21 +40,21 @@ class Drug(models.Model):
     category = models.ForeignKey(
         CategoryDrug, on_delete=models.CASCADE, related_name='drugs', verbose_name="دسته بندی")
     description = models.TextField(blank=True, verbose_name="توضیحات")
-    shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE, related_name='drugs', verbose_name="قفسه")
-    code_drug = models.CharField(max_length=255,blank=True,null=True ,unique=True,
-                            verbose_name="کد دارو")
+    shelf = models.ForeignKey(Shelf, on_delete=models.CASCADE,
+                            related_name='drugs', verbose_name="قفسه", blank=True, null=True)
+    code_drug = models.CharField(
+        max_length=255, blank=True, null=True, unique=True, verbose_name="کد دارو")
     interactions = models.ManyToManyField(
         'self', blank=True, symmetrical=False, verbose_name="تداخل‌های دارویی")
     price = models.DecimalField(
         max_digits=10, decimal_places=2, verbose_name="قیمت")
     quantity = models.IntegerField(verbose_name="تعداد")
     manufacturer = models.CharField(max_length=255, verbose_name="تولید کننده")
-    expiration_date = models.CharField(verbose_name="تاریخ انقضا", max_length=255)
+    expiration_date = models.CharField(
+        verbose_name="تاریخ انقضا", max_length=255)
     status = models.BooleanField(default=False, verbose_name="وضعیت")
     created_at = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name="تاریخ ثبت"
-    )
+        auto_now_add=True, verbose_name="تاریخ ثبت")
 
     def __str__(self):
         return f"{self.name} | {self.category}"

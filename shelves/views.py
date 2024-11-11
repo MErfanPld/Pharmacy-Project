@@ -9,9 +9,19 @@ from .serializers import ShelfSerializer, LocationShelfSerializer
 
 # Create your views here.
 
-class ShelfViewSet(viewsets.ModelViewSet):
+# class ShelfViewSet(viewsets.ModelViewSet):
+#     queryset = Shelf.objects.all()
+#     serializer_class = ShelfSerializer
+
+
+class ShelfListCreateAPIView(ListCreateAPIView):
     queryset = Shelf.objects.all()
     serializer_class = ShelfSerializer
+
+class ShelfDetailAPIView(RetrieveUpdateDestroyAPIView):
+    queryset = Shelf.objects.all()
+    serializer_class = ShelfSerializer
+
 
 class LocationShelfListAPIView(APIView):
     permission_classes = [RestPermissionMixin]
