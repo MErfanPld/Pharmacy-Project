@@ -22,14 +22,14 @@ from drf_spectacular.views import SpectacularSwaggerView,SpectacularAPIView,Spec
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('dashboard.urls')),
-    path('dashboard/users/', include('users.urls')),
-    path('dashboard/accounts/', include('accounts.urls')),
-    path('dashboard/insurances/', include('insurances.urls')),
-    path('dashboard/medicines/', include('medicines.urls')),
-    path('dashboard/orders/', include('orders.urls')),
-    path('dashboard/chats/', include('chats.urls')),
-    path('dashboard/acl/', include('acl.urls')),
+    # path('', include('dashboard.urls')),
+    # path('dashboard/users/', include('users.urls')),
+    # path('dashboard/accounts/', include('accounts.urls')),
+    # path('dashboard/insurances/', include('insurances.urls')),
+    # path('dashboard/medicines/', include('medicines.urls')),
+    # path('dashboard/orders/', include('orders.urls')),
+    # path('dashboard/chats/', include('chats.urls')),
+    # path('dashboard/acl/', include('acl.urls')),
 ]
 
 urlpatterns += [
