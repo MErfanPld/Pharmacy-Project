@@ -12,7 +12,6 @@ from django.core.exceptions import ValidationError
 from acl.permissions import PERMISSIONS
 from extenstions.utils import jalali_converter
 from utils.validator import mobile_regex, mobile_validator, national_id_regex
-from .helpers import MARITAL_STATUS_CHOICES
 from .managers import UserManager
 from django.conf import settings
 from django.utils.text import slugify
@@ -27,6 +26,10 @@ def upload_image(instance, filename):
     name = str(time.time()) + '-' + str(instance.username) + '-' + filename
     return path + '/' + name
 
+MARITAL_STATUS_CHOICES = (
+    ('S', 'مجرد'),
+    ('M', 'متاهل'),
+)
 
 class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(
